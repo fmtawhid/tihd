@@ -1,0 +1,37 @@
+.profil-card{
+    height: 100%;
+
+    
+    .card-body{
+        padding: 40px var(--bs-card-spacer-x);
+    }
+
+    .profile-card-image{
+        img{
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    &.active{
+        .profile-card-image{
+            img{
+                border: 1px solid var(--bs-danger);
+            }
+        }
+    }
+    .profile-card-add-user{
+        font-size: 40px;
+        height: 100px;
+        width: 100px;
+        line-height: 100px;
+        border-radius: 50%;
+        background-color: var(--bs-body-bg);
+
+        i{
+            vertical-align: middle;
+        }
+    }
+}

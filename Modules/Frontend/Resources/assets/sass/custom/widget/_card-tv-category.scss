@@ -1,0 +1,30 @@
+.livetv-card {
+    .livetv-img {
+        height: 190px;
+    }
+
+    .live-card-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+
+        .live-badge {
+            padding: 3px 8px 3px 21px;
+            border-radius: 13px;
+            font-size: 12px;
+            color: var(--bs-gray-900);
+            background-color: var(--bs-heading-color);
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 8px;
+                left: 8px;
+                height: 7px;
+                width: 7px;
+                border-radius: 50%;
+                background-color: var(--bs-primary);
+            }
+        }
+    }
+}

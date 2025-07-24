@@ -1,0 +1,22 @@
+
+    .input-style-text {
+        background-color: transparent;
+        color: var(--bs-heading-color);
+    }
+    .input-style-box{
+        background-color: transparent;
+        color: var(--bs-heading-color);
+        &:focus{
+            background-color: transparent;
+        }
+    }
+
+input::-internal-autofill-selected,
+input::-webkit-autofill:focus,
+input::-webkit-autofill:active,
+input::-webkit-autofill:focus,
+input::-webkit-autofill:hover {
+    color: var(--bs-body-color);
+    background-color: var(--bs-gray-900);
+    border-color: transparent;
+}

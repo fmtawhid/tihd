@@ -1,0 +1,47 @@
+.video-player{
+    .video-js{
+        position: relative;
+        padding-bottom: 43%;
+        width: 100%;
+        height: 0;
+    }
+
+    .vjs-tech{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .vjs-control-bar{
+        width: 100%;
+    }
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 43%;
+    height: 0;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .video-player {
+        .video-js {
+            padding-bottom: 56.25%;
+        }
+    }
+    
+    .video-container {
+        padding-bottom: 56.25%;
+    }
+}

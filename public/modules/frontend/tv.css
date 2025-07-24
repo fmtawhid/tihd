@@ -1,0 +1,87 @@
+
+@media(min-width: 576px) and (max-width: 990.98px) {
+    button:focus-visible,
+    a:focus-visible,
+    .atv li:focus-visible,
+    span:focus-visible,
+    img:focus-visible,input:focus-visible {
+      outline: none !important;
+      border: 2px solid #ffffff !important;
+      border-radius: 6px !important;
+      box-shadow: 0 0 10px rgb(255, 255, 255) !important;
+      transition: all 0.2s ease-in-out !important;
+    }
+    /* .selectfortv:focus-visible{
+      outline: none !important;
+      border: 2px solid rgb(13, 219, 39) !important;
+      border-radius: 6px !important;
+      box-shadow: 0 0 10px rgb(13, 219, 39) !important;
+      transition: all 0.2s ease-in-out !important;
+    } */
+    .selectfortv:focus-visible {
+      outline: none !important;
+      border: 2px solid #ffffff !important;
+      border-radius: 6px !important;
+      box-shadow: 0 0 10px rgb(255, 255, 255) !important;
+      transition: all 0.2s ease-in-out !important;
+      z-index: 1050; /*Make sure it's on top of other elements*/
+    }
+    
+    .iti__flag-container:focus-visible{
+      outline: none !important;
+      border: 2px solid #ffffff !important; /* #c42629 */
+      border-radius: 6px !important;
+      box-shadow: 0 0 10px rgb(255, 255, 255) !important;
+      transition: all 0.2s ease-in-out !important;
+      z-index: 1050; /*Make sure it's on top of other elements*/
+    }
+
+    /* For user Drop Down
+    .dropdown-menu {
+      position: relative;
+      z-index: 1050; 
+    }
+    
+    .dropdown-user-wrapper .nav-link:focus-visible {
+        border: 2px solid rgb(13, 219, 39);
+        box-shadow: 0 0 10px rgb(13, 219, 39);
+    } */
+
+
+  /* .card-hover {
+    pointer-events: none !important;
+  } */
+}
+
+.showfortv {
+  display: none !important;
+}
+
+.hidefortv {
+  display: block !important;
+}
+.no-focus-visible:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+
+@media (min-width: 576px) and (max-width: 990.98px) {
+  .hidefortv {
+    display: none !important;
+  }
+  .showfortv {
+    display: block !important;
+  }
+}
+@media (min-width: 320px) {
+  .responsivelangmb {
+    margin-left: -50px;
+  }
+}
+
+
+
+

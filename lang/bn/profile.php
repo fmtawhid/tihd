@@ -1,0 +1,43 @@
+<?php
+
+return [
+    'title' => 'আমার প্রোফাইল',
+    'info' => 'তথ্য',
+    'change_password' => 'পাসওয়ার্ড পরিবর্তন করুন
+',
+    'deactivate_account' => 'অ্যাকাউন্ট নিষ্ক্রিয় করুন',
+    'deactivate_account_message' => 'আপনি কি নিশ্চিত আপনি নিষ্ক্রিয় করতে চান?',
+    'reactivate_account_message' => 'আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট সক্রিয় করতে চান? আপনার পরিচালক সাথে যোগাযোগ করুন!',
+    'lbl_first_name' => 'নামের প্রথম অংশ',
+    'lbl_last_name' => 'নামের শেষ অংশ',
+    'lbl_email' => 'ইমেইল',
+    'lbl_file_url' => 'ফিচার ইমেজ',
+    'lbl_phone_number' => 'ফোন নম্বর',
+    'lbl_contact_number' => 'যোগাযোগের নম্বর',
+    'lbl_password' => 'পাসওয়ার্ড',
+    'lbl_lat' => 'অক্ষাংশ',
+    'lbl_long' => 'দ্রাঘিমাংশ',
+    'lbl_shop_number' => 'দোকানের নম্বর, ভবনের নাম, এলাকা',
+    'lbl_landmark' => 'ল্যান্ডমার্ক, কাছাকাছি',
+    'lbl_postal_code' => 'পোস্টাল কোড',
+    'lbl_country' => 'দেশ',
+    'lbl_state' => 'রাজ্য',
+    'lbl_city' => 'শহর',
+    'lbl_confirm_password' => 'পাসওয়ার্ড নিশ্চিত করুন',
+    'lbl_gender' => 'লিঙ্গ',
+    'lbl_show_in_calender' => 'Show In Calendar',
+    'lbl_is_manager' => 'ম্যানেজার ',
+    'lbl_status' => 'অবস্থা',
+    'lbl_role' => 'ভূমিকা',
+    'lbl_verification_status' => 'যাচাইকরণের স্ট্যাটাস',
+    'lbl_blocked' => 'ব্লক করা',
+    'lbl_image' => 'প্রোফাইল ইমেজ',
+    'lbl_about_self' => 'নিজের সম্পর্কে',
+    'lbl_expert' => 'বিশেষজ্ঞ',
+    'lbl_facebook_link' => 'ফেসবুক লিংক',
+    'lbl_instagram_link' => 'ইনস্টাগ্রাম লিঙ্ক',
+    'lbl_twitter_link' => 'টুইটার লিঙ্ক',
+    'lbl_dribbble_link' => '
+ডরিবল লিঙ্ক',
+    'other_details' => 'অন্যান্য বিবরণ'
+];
