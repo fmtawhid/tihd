@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -43,11 +42,13 @@ Route::group(['prefix' => 'app', 'as' => 'backend.', 'middleware' => ['auth','ad
         Route::get('/index_data', [SubscriptionController::class, 'index_data'])->name('index_data');
         Route::get('export', [SubscriptionController::class, 'export'])->name('export');
       Route::post('bulk-action', [SubscriptionController::class, 'bulk_action'])->name('bulk_action');
+      Route::match(['get', 'post'], 'manual', [SubscriptionController::class, 'manualSubscription'])->name('manual');
 
     });
 
     Route::resource('subscriptions', SubscriptionController::class);
 
+    Route::post('subscriptions/export-pdf', [SubscriptionController::class, 'exportPdf'])->name('subscriptions.exportPdf');
     // subscription Plan Routes
 
 

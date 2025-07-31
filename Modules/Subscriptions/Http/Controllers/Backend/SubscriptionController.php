@@ -10,6 +10,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use Currency;
 use Illuminate\Http\Request;
+use PDF; // উপরে use statement যোগ করুন
 
 
 class SubscriptionController extends Controller
@@ -27,7 +28,7 @@ class SubscriptionController extends Controller
         $this->module_icon = 'fa-solid fa-clipboard-list';
 
         view()->share([
-            'module_title' => $this->module_title,
+            'module_title' => $this->module_title, 
             'module_icon' => $this->module_icon,
             'module_name' => $this->module_name,
         ]);
@@ -173,5 +174,105 @@ class SubscriptionController extends Controller
 
         return $this->performBulkAction(subscription::class, $ids, $actionType, $messageKey, $moduleName);
     }
+
+    public function exportPdf(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        $columns = $request->input('columns', []);
+
+        $subscriptions = Subscription::with('user')
+            ->whereIn('id', $ids)
+            ->get();
+
+        $data = $subscriptions->map(function ($row) use ($columns) {
+            $selectedData = [];
+            foreach ($columns as $column) {
+                switch ($column) {
+                    case 'user_details':
+                        $user = $row->user;
+                        $selectedData[$column] = $user
+                            ? 'Name: ' . ($user->full_name ?? '-') . ', Email: ' . ($user->email ?? '-')
+                            : 'Name: -, Email: -';
+                        break;
+                    default:
+                        $selectedData[$column] = $row[$column];
+                        break;
+                }
+            }
+            return $selectedData;
+        });
+
+        $pdf = PDF::loadView('subscriptions::backend.subscriptions.pdf', [
+            'data' => $data,
+            'columns' => $columns,
+        ]);
+
+        return $pdf->download('subscriptions.pdf');
+    }
+
+    public function manualSubscription(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'user_id' => 'required|exists:users,id',
+                'plan_id' => 'required|exists:plan,id',
+                'amount' => 'required|numeric',
+                'payment_status' => 'required|in:paid,pending',
+                'payment_type' => 'required|string',
+                'transaction_id' => 'nullable|string',
+            ]);
+
+            $user = \App\Models\User::find($request->user_id);
+            $plan = \Modules\Subscriptions\Models\Plan::find($request->plan_id);
+
+            $start_date = now();
+            $end_date = match ($plan->duration) {
+                'days', 'day' => now()->addDays($plan->duration_value),
+                'months', 'month' => now()->addMonths($plan->duration_value),
+                'years', 'year' => now()->addYears($plan->duration_value),
+                default => now(), 
+            };
+
+            $subscription = Subscription::create([
+                'plan_id' => $plan->id,
+                'user_id' => $user->id,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+                'status' => $request->payment_status == 'paid' ? 'active' : 'pending',
+                'amount' => $request->amount,
+                'tax_amount' => 0,
+                'total_amount' => $request->amount,
+                'name' => $plan->name,
+                'identifier' => $plan->identifier,
+                'type' => $plan->duration,
+                'duration' => $plan->duration_value,
+                'level' => $plan->level,
+                'plan_type' => $plan->plan_type,
+            ]);
+
+            \Modules\Subscriptions\Models\SubscriptionTransactions::create([
+                'subscriptions_id' => $subscription->id,
+                'user_id' => $user->id,
+                'amount' => $request->amount,
+                'tax_data' => null,
+                'payment_status' => $request->payment_status,
+                'payment_type' => $request->payment_type,
+                'transaction_id' => $request->transaction_id,
+            ]);
+
+            if ($request->payment_status == 'paid') {
+                $user->is_subscribe = 1;
+                $user->save();
+            }
+
+            return redirect()->route('backend.subscriptions.index')->with('success', 'Manual subscription added successfully!');
+        }
+
+        $users = \App\Models\User::all();
+        $plans = \Modules\Subscriptions\Models\Plan::all();
+
+        return view('subscriptions::backend.subscriptions.manual', compact('users', 'plans'));
+    }
+
 
 }

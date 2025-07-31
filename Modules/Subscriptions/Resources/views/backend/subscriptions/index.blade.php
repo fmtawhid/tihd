@@ -8,9 +8,15 @@
     <div class="card-main mb-5">
         <x-backend.section-header>
             <div class="d-flex flex-wrap gap-3">
-                <button type="button" class="btn btn-dark" data-modal="export">
+                <!-- <button type="button" class="btn btn-dark" data-modal="export">
+                    <i class="ph ph-export align-middle"></i> {{ __('messages.export') }}
+                </button> -->
+                <button type="button" class="btn btn-dark" id="export-pdf-btn">
                     <i class="ph ph-export align-middle"></i> {{ __('messages.export') }}
                 </button>
+                <a href="{{ route('backend.subscriptions.manual') }}" class="btn btn-primary" id="export-pdf-btn">
+                    <i class="ph ph-plus-circle align-middle me-1"></i> Add Subscription
+                </a>
             </div>
 
             <x-slot name="toolbar">
@@ -47,7 +53,7 @@
     <script src="{{ asset('js/form/index.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" defer>
-        const columns = [
+        window.subscriptionColumns = [
             {
                 name: 'check',
                 data: 'check',
@@ -115,7 +121,7 @@
         const actionColumn = [];
 
 
-        const finalColumns = [...columns, ...actionColumn];
+        const finalColumns = [...window.subscriptionColumns, ...actionColumn];
 
         document.addEventListener('DOMContentLoaded', (event) => {
             initDatatable({
@@ -141,5 +147,46 @@
         }
 
         $('#quick-action-type').change(resetQuickAction);
+    </script>
+
+    <!--  PDF -->
+
+    <script>
+        document.getElementById('export-pdf-btn').addEventListener('click', function() {
+            let selectedIds = [];
+            document.querySelectorAll('.select-table-row:checked').forEach(function(checkbox) {
+                selectedIds.push(checkbox.value);
+            });
+
+            let exportColumns = window.subscriptionColumns.map(col => col.data).filter(col => col !== 'check');
+
+            if (selectedIds.length === 0) {
+                alert('Please select at least one row!');
+                return;
+            }
+
+            // AJAX দিয়ে PDF রিকোয়েস্ট পাঠান
+            fetch('{{ route("backend.subscriptions.exportPdf") }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ids: selectedIds,
+                    columns: exportColumns
+                })
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = "subscriptions.pdf";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            });
+        });
     </script>
 @endpush
