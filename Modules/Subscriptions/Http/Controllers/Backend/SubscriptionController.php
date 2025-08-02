@@ -157,11 +157,19 @@ class SubscriptionController extends Controller
                     $query->whereRaw("CAST(REGEXP_REPLACE(total_amount, '[^0-9.]', '') AS DECIMAL(10, 2)) LIKE ?", ["%{$cleanedKeyword}%"]);
                 }
             })
+            ->addColumn('action', function ($row) {
+                $invoiceUrl = route('backend.subscriptions.invoice', $row->id);
+                return '<a href="'.$invoiceUrl.'" class="btn btn-sm btn-primary" download>
+                            <i class="fa fa-file-pdf"></i> Download
+                        </a>';
+            })
+
+
 
 
             ->orderColumns(['id'], '-:column $1');
 
-        return $datatable->rawColumns(array_merge(['check','user_id', 'start_date', 'end_date', 'amount', 'name']))
+        return $datatable->rawColumns(array_merge(['check','user_id', 'start_date', 'end_date', 'amount', 'name', 'action']))
             ->toJson();
     }
     public function bulk_action(Request $request)
@@ -272,6 +280,28 @@ class SubscriptionController extends Controller
         $plans = \Modules\Subscriptions\Models\Plan::all();
 
         return view('subscriptions::backend.subscriptions.manual', compact('users', 'plans'));
+    }
+
+
+    public function downloadInvoice($id)
+    {
+        // Subscription + সম্পর্কিত তথ্য লোড করো
+        $subscription = Subscription::with('plan', 'subscription_transaction', 'user')->find($id);
+
+        if (!$subscription) {
+            abort(404, 'Subscription not found');
+        }
+
+        // Invoice view render করো
+        $view = view('frontend::components.partials.invoice', [
+            'data' => $subscription
+        ])->render();
+
+        // PDF তৈরি করো
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($view);
+
+        // ডাউনলোড করো
+        return $pdf->download('invoice-'.$subscription->id.'.pdf');
     }
 
 

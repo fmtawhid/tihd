@@ -407,7 +407,6 @@ class FrontendController extends Controller
     return response()->json(['isActive' => false]);
    }
 
-
    public function checkDeviceType() {
         $checkDeviceType = Subscription::checkPlanSupportDevice(auth()->id());
         return $checkDeviceType;

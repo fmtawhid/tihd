@@ -104,7 +104,8 @@
 
   <div class="header">
     <div class="main-logo" style="float: left">
-        <img class="logo-mini img-fluid" src="https://apps.iqonic.design/streamit-laravel/img/logo/dark_logo.png" height="30" alt="logo">
+        <!-- <img class="logo-mini img-fluid" src="https://apps.iqonic.design/streamit-laravel/img/logo/dark_logo.png" height="30" alt="logo"> -->
+        @include('frontend::components.partials.logo')
     </div>
     <div style="float: right">
         <p>{{ __('frontend.invoice_date') }} - <span class="text-black">{{ now()->format('d/m/Y') }}</span> <span style="padding-left: 10px;">{{ __('frontend.invoice_id') }} -  <span class="text-black">#{{ $data->id }}</span></span></p>
@@ -131,17 +132,18 @@
     </div>
   </div>
 
+
   <div class="header-content" style="clear: both">
     <div class="c-row">
         <div class="left-content c-col-7" style="float: left">
             <h3>{{ $settingValue = App\Models\Setting::where('name', 'app_name')->value('val') ?? '-'}}</h3>
 
             {{-- <div style="width: 50%; margin-top: 10px;">
-                <p>1234 Innovation Avenue, Suite 500, Tech City, Silicon Valley, California, 94043, United States</p>
+                <p>1234 Innovation Avenue,Suite 500, Tech City, Silicon Valley,California, 94043, United States</p>
             </div> --}}
         </div>
         <div class="right-content c-col-5" style="text-align: right; float: right">
-            <p>{{ App\Models\Setting::where('name','inquriy_email')->value('val') ?? '-' }}</p>
+            <p>{{ App\Models\Setting::where('name','inquriy_email')->value('val') ?? 'info@tihd.tv' }}</p>
             <p style="margin: 10px 0 0;">{{ App\Models\Setting::where('name','helpline_number')->value('val') ?? '-'}}</p>
         </div>
 

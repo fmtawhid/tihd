@@ -44,6 +44,7 @@ Route::group(['prefix' => 'app', 'as' => 'backend.', 'middleware' => ['auth','ad
       Route::post('bulk-action', [SubscriptionController::class, 'bulk_action'])->name('bulk_action');
       Route::match(['get', 'post'], 'manual', [SubscriptionController::class, 'manualSubscription'])->name('manual');
 
+      Route::get('subscriptions/{id}/invoice', [SubscriptionController::class, 'downloadInvoice'])->name('invoice');
     });
 
     Route::resource('subscriptions', SubscriptionController::class);

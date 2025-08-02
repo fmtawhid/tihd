@@ -118,7 +118,18 @@
             }
         ];
 
-        const actionColumn = [];
+
+        // const actionColumn = [];
+        const actionColumn = [
+            {
+                data: 'action',
+                name: 'action',
+                title: 'Action',
+                orderable: false,
+                searchable: false
+            }
+        ];
+
 
 
         const finalColumns = [...window.subscriptionColumns, ...actionColumn];
