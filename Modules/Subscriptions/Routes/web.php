@@ -22,20 +22,9 @@ use Modules\Subscriptions\Http\Controllers\Backend\SubscriptionController;
 * --------------------------------------------------------------------
 */
 Route::group(['prefix' => 'app', 'as' => 'backend.', 'middleware' => ['auth','admin']], function () {
-    /*
-    * These routes need view-backend permission
-    * (good if you want to allow more than one group in the backend,
-    * then limit the backend features by different roles or permissions)
-    *
-    * Note: Administrator has all permissions so you do not have to specify the administrator role everywhere.
-    */
+    Route::get('/backend/users/search', [SubscriptionController::class, 'search'])->name('users.search');
+    Route::get('/backend/users/info/{id}', [SubscriptionController::class, 'info'])->name('users.info');
 
-    /*
-     *
-     *  Backend  plan  Routes
-     *
-     * ---------------------------------------------------------------------
-     */
     // Planlimitation Routes
 
     Route::group(['prefix' => 'subscriptions', 'as' => 'subscriptions.'], function () {

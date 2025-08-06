@@ -24,6 +24,7 @@ class GenerateMenus
                     'title' => __('sidebar.dashboard'),
                     'route' => 'backend.home',
                     'active' => ['app', 'app/dashboard'],
+                    'permission' => ['view_dashboard_setting'],
                     'order' => 0,
                 ]);
             }
@@ -65,47 +66,115 @@ class GenerateMenus
             ]);
           }
 
-          if(isenablemodule('tvshow')==1){
+        //   if(isenablemodule('tvshow')==1){
 
-            $tv_show = $this->parentMenu($menu, [
-                'icon' => 'ph ph-television-simple',
-                'title' => __('sidebar.tv_show'),
-                'nickname' => 'tv_show',
-                'permission' => ['view_tvshow'],
-                'order' => 0,
-            ]);
+        //     $tv_show = $this->parentMenu($menu, [
+        //         'icon' => 'ph ph-television-simple',
+        //         'title' => __('sidebar.tv_show'),
+        //         'nickname' => 'tv_show',
+        //         'permission' => ['view_tvshow'],
+        //         'order' => 0,
+        //     ]);
 
-            $this->childMain($tv_show, [
-                'title' => __('sidebar.tv_show'),
-                'route' => 'backend.tvshows.index',
-                'active' => ['app/tvshows'],
-                'shortTitle' => 's',
-                'order' => 0,
-                'permission' => ['view_tvshows'],
-                'icon' => 'ph ph-monitor-play',
-            ]);
+        //     $this->childMain($tv_show, [
+        //         'title' => __('sidebar.tv_show'),
+        //         'route' => 'backend.tvshows.index',
+        //         'active' => ['app/tvshows'],
+        //         'shortTitle' => 's',
+        //         'order' => 0,
+        //         'permission' => ['view_tvshows'],
+        //         'icon' => 'ph ph-monitor-play',
+        //     ]);
 
-            $this->childMain($tv_show, [
-                'title' => __('sidebar.seasons'),
-                'route' => 'backend.seasons.index',
-                'active' => ['app/seasons'],
-                'shortTitle' => 's',
-                'order' => 0,
-                'permission' => ['view_seasons'],
-                'icon' => 'ph ph-television',
-            ]);
+        //     $this->childMain($tv_show, [
+        //         'title' => __('sidebar.seasons'),
+        //         'route' => 'backend.seasons.index',
+        //         'active' => ['app/seasons'],
+        //         'shortTitle' => 's',
+        //         'order' => 0,
+        //         'permission' => ['view_seasons'],
+        //         'icon' => 'ph ph-television',
+        //     ]);
 
-            $this->childMain($tv_show, [
-                'title' => __('sidebar.episodes'),
-                'route' => 'backend.episodes.index',
-                'active' => ['app/episodes'],
-                'shortTitle' => 's',
-                'order' => 0,
-                'permission' => ['view_episodes'],
-                'icon' => 'ph ph-cards-three',
-            ]);
+        //     $this->childMain($tv_show, [
+        //         'title' => __('sidebar.episodes'),
+        //         'route' => 'backend.episodes.index',
+        //         'active' => ['app/episodes'],
+        //         'shortTitle' => 's',
+        //         'order' => 0,
+        //         'permission' => ['view_episodes'],
+        //         'icon' => 'ph ph-cards-three',
+        //     ]);
 
+        // }
+        
+        if (isenablemodule('tvshows') == 1) {
+
+            // List of all child permissions for TV Show
+            $tvshowChildPermissions = [
+                'view_tvshows',
+                'view_seasons',
+                'view_episodes'
+            ];
+
+            // Check if user has at least one permission
+            $hasAnyChildPermission = false;
+            foreach ($tvshowChildPermissions as $perm) {
+                if (auth()->user()->can($perm)) {
+                    $hasAnyChildPermission = true;
+                    break;
+                }
+            }
+
+            // If no permission at all, skip building this menu
+            if ($hasAnyChildPermission) {
+
+                $tv_show = $this->parentMenu($menu, [
+                    'icon' => 'ph ph-television-simple',
+                    'title' => __('sidebar.tv_show'),
+                    'nickname' => 'tv_show',
+                    'permission' => ['view_tvshow'], // Optional: could skip this since we check already
+                    'order' => 0,
+                ]);
+
+                if (auth()->user()->can('view_tvshows')) {
+                    $this->childMain($tv_show, [
+                        'title' => __('sidebar.tv_show'),
+                        'route' => 'backend.tvshows.index',
+                        'active' => ['app/tvshows'],
+                        'shortTitle' => 's',
+                        'order' => 0,
+                        'permission' => ['view_tvshows'],
+                        'icon' => 'ph ph-monitor-play',
+                    ]);
+                }
+
+                if (auth()->user()->can('view_seasons')) {
+                    $this->childMain($tv_show, [
+                        'title' => __('sidebar.seasons'),
+                        'route' => 'backend.seasons.index',
+                        'active' => ['app/seasons'],
+                        'shortTitle' => 's',
+                        'order' => 0,
+                        'permission' => ['view_seasons'],
+                        'icon' => 'ph ph-television',
+                    ]);
+                }
+
+                if (auth()->user()->can('view_episodes')) {
+                    $this->childMain($tv_show, [
+                        'title' => __('sidebar.episodes'),
+                        'route' => 'backend.episodes.index',
+                        'active' => ['app/episodes'],
+                        'shortTitle' => 's',
+                        'order' => 0,
+                        'permission' => ['view_episodes'],
+                        'icon' => 'ph ph-cards-three',
+                    ]);
+                }
+            }
         }
+
 
 
         if(isenablemodule('video')==1){
@@ -234,11 +303,22 @@ class GenerateMenus
                 $this->staticMenu($menu, ['title' => __('sidebar.user'), 'order' => 0]);
             }
 
+            // $this->mainRoute($menu, [
+            //     'icon' => 'ph ph-user',
+            //     'title' => __('sidebar.user'),
+            //     'route' => 'backend.users.index',
+            //     'active' => ['app/users'],
+            //     'permission' => ['view_users'],
+            //     'order' => 0,
+            // ]);
             $this->mainRoute($menu, [
                 'icon' => 'ph ph-user',
                 'title' => __('sidebar.user'),
+                'nickname' => 'user', // Added like second array
                 'route' => 'backend.users.index',
+                'shortTitle' => 'us', // Added like second array
                 'active' => ['app/users'],
+                'permission' => ['view_users'],
                 'order' => 0,
             ]);
 
@@ -259,6 +339,7 @@ class GenerateMenus
                 'title' => __('sidebar.review'),
                 'route' => 'backend.reviews.index',
                 'active' => ['app/reviews'],
+                'permission' =>['view_reviews'],
                 'order' => 0,
             ]);
 
@@ -291,6 +372,7 @@ class GenerateMenus
                 'route' => '',
                 'title' => __('sidebar.mobile_setting'),
                 'nickname' => 'mobile_setting',
+                'permission' => ['view_mobilesetting'],
                 'order' => 0,
             ]);
             $this->childMain($mobile_setting, [
@@ -298,7 +380,7 @@ class GenerateMenus
                 'title' => __('sidebar.dashboard_setting'),
                 'route' => 'backend.mobile-setting.index',
                 'active' => 'app/mobile-setting',
-                'permission' => ['view_setting'],
+                'permission' => ['view_mobilesetting'],
                 'order' => 0,
             ]);
 
@@ -357,7 +439,7 @@ class GenerateMenus
                 'title' => __('sidebar.settings'),
                 'route' => 'backend.settings.general',
                 'active' => 'app/setting/general-setting',
-                // 'permission' => ['view_setting'],
+                'permission' => ['view_setting'],
                 'order' => 0,
             ]);
 
@@ -396,7 +478,7 @@ class GenerateMenus
                 'title' => __('faq.title'),
                 'route' => 'backend.faqs.index',
                 'active' => ['app/faqs'],
-                // 'permission' => ['view_faqs'],
+                'permission' => ['view_faq'],
                 'order' => 0,
             ]);
 

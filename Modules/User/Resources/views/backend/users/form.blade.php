@@ -178,6 +178,30 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ __('users.lbl_roles') }}</h5>
+                        <div class="row">
+                            @foreach($roles as $role)
+                            <div class="col-md-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->name }}"
+                                        id="role-{{ $role->name }}" {{ in_array($role->name, $userRoles) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="role-{{ $role->name }}">
+                                        {{ $role->name }}
+                                    </label>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @error('roles')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+
+
                 <div class="col-md-12">
                     <label for="address" class="form-label">{{ __('users.lbl_address') }}</label>
                     <textarea class="form-control" name="address" id="address" rows="6"

@@ -12,64 +12,64 @@ return [
         //
     ],
     'MODULES' => [
-        [
-            'module_name' => 'blogs',
-            'is_custom_permission' => 0,
-        ],
+        // [
+        //     'module_name' => 'blogs',
+        //     'is_custom_permission' => 0,
+        // ],
         [
             'module_name' => 'genres',
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'movies',
+            'module_name' => 'movies', // Program 
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'tvshows',
+            'module_name' => 'tvshows', // Series subtitle
+            'is_custom_permission' => 0,
+        ],
+        [ 
+            'module_name' => 'seasons', // Season subtitle
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'seasons',
+            'module_name' => 'episodes', // Episode subtitle
+            'is_custom_permission' => 0,
+        ],
+        // [
+        //     'module_name' => 'videos',
+        //     'is_custom_permission' => 0,
+        // ],
+        [
+            'module_name' => 'tvcategory', // TV Category subtitle
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'episodes',
+            'module_name' => 'tvchannel', // TV Channel subtitle
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'videos',
+            'module_name' => 'actor', // Actor subtitle
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'tvcategory',
+            'module_name' => 'director', // Director subtitle
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'tvchannel',
+            'module_name' => 'plans', // Plan
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'actor',
+            'module_name' => 'planlimitation', // Plan Limitation
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'director',
+            'module_name' => 'subscriptions', // Subscription
             'is_custom_permission' => 0,
         ],
         [
-            'module_name' => 'plans',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'planlimitation',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'subscriptions',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'banners',
+            'module_name' => 'banners', // Banner
             'is_custom_permission' => 0,
         ],
         [
@@ -128,10 +128,10 @@ return [
             'module_name' => 'media',
             'is_custom_permission' => 0,
         ],
-        [
-            'module_name' => 'tvshow',
-            'is_custom_permission' => 0,
-        ],
+        // [
+        //     'module_name' => 'tvshow',
+        //     'is_custom_permission' => 0,
+        // ],
         [
             'module_name' => 'taxes',
             'is_custom_permission' => 0,
@@ -150,6 +150,22 @@ return [
         ],
         [
             'module_name' => 'constants',
+            'is_custom_permission' => 0,
+        ],
+        [
+            'module_name' => 'mobilesetting',
+            'is_custom_permission' => 0,
+        ],
+        [
+            'module_name' => 'users',
+            'is_custom_permission' => 0,
+        ],
+        [
+            'module_name' => 'reviews',
+            'is_custom_permission' => 0,
+        ],
+        [
+            'module_name' => 'faq',
             'is_custom_permission' => 0,
         ],
 
