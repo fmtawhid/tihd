@@ -234,7 +234,12 @@ class UsersController extends Controller
     }
 
     public function store(UserRequest $request)
+<<<<<<< Updated upstream
     {
+=======
+    { 
+        
+>>>>>>> Stashed changes
         $data = $request->except('profile_image');
 
         $data['password']=Hash::make($data['password']);

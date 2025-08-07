@@ -16,8 +16,23 @@
     <!-- Social Login -->
     <x-auth-social-login />
 
+<<<<<<< Updated upstream
     <!-- Validation Errors -->
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
+=======
+<div class="login-wrapper">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden login-card">
+        <div class="row g-0" style="background: #121D24;">
+            
+            <!-- Left Side: Logo --> 
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center p-5">
+                <a href="{{ url('/') }}">
+                    <x-application-logo style="max-width: 200px;" />
+                </a>
+                <h2 class="mt-4">{{ __('Welcome Back ') }}</h2>
+                <p class="text-muted">{{ __('To our Dashboard') }}</p>
+            </div>
+>>>>>>> Stashed changes
 
     <form method="POST" action="{{ $url ?? route('admin-login') }}">
       @csrf

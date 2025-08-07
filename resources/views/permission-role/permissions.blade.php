@@ -29,7 +29,7 @@
 
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body"> 
                 @foreach ($roles as $role)
                 @if($role->name !== 'admin' )
                 {{ html()->form('post', route('backend.permission-role.store', $role->id))->open() }}

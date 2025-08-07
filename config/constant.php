@@ -84,46 +84,46 @@ return [
             'module_name' => 'notification_template',
             'is_custom_permission' => 0,
         ],
-        [
-            'module_name' => 'country',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'city',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'location',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'state',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'constant',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'world',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'subscription',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'castcrew',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'livetv',
-            'is_custom_permission' => 0,
-        ],
-        [
-            'module_name' => 'video',
-            'is_custom_permission' => 0,
-        ],
+        // [
+        //     'module_name' => 'country',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'city',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'location',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'state',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'constant',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'world',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'subscription',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'castcrew',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'livetv',
+        //     'is_custom_permission' => 0,
+        // ],
+        // [
+        //     'module_name' => 'video',
+        //     'is_custom_permission' => 0,
+        // ],
         [
             'module_name' => 'media',
             'is_custom_permission' => 0,
@@ -144,10 +144,10 @@ return [
             'module_name' => 'dashboard_setting',
             'is_custom_permission' => 0,
         ],
-        [
-            'module_name' => 'app_config',
-            'is_custom_permission' => 0,
-        ],
+        // [
+        //     'module_name' => 'app_config',
+        //     'is_custom_permission' => 0,
+        // ],
         [
             'module_name' => 'constants',
             'is_custom_permission' => 0,

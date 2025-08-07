@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Subscriptions\Models\Subscription;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\HasRoles; 
 use Modules\Entertainment\Models\Watchlist;
 use Modules\Entertainment\Models\ContinueWatch;
 use Laravolt\Avatar\Facade as Avatar;

@@ -304,5 +304,60 @@ class SubscriptionController extends Controller
         return $pdf->download('invoice-'.$subscription->id.'.pdf');
     }
 
+<<<<<<< Updated upstream
+=======
+ 
+    // AJAX Search for Select2
+    public function search(Request $request)
+    {
+        $search = $request->q;
+
+        $users = \App\Models\User::where(function($query) use ($search) {
+                $query->where('first_name', 'like', "%{$search}%")
+                    ->orWhere('last_name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('mobile', 'like', "%{$search}%");
+            })
+            ->select('id', 'first_name', 'last_name', 'email', 'mobile')
+            ->limit(10)
+            ->get();
+
+        $formatted = $users->map(function ($user) {
+            $fullName = trim($user->first_name . ' ' . $user->last_name);
+            return [
+                'id' => $user->id,
+                'text' => $fullName . ' (' . ($user->email ?? 'No Email') . ')',
+            ];
+        });
+
+        return response()->json($formatted);
+    }
+
+
+    public function info($id)
+    {
+        $user = \App\Models\User::with(['subscriptions.plan'])->find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        return response()->json([
+            'name' => $user->full_name,
+            'email' => $user->email,
+            'phone' => $user->mobile,
+            'subscriptions' => $user->subscriptions->map(function ($sub) {
+                return [
+                    'plan' => $sub->plan->name ?? 'N/A',
+                    'price' => $sub->plan->price ?? 'N/A',
+                    'start_date' => $sub->start_date,
+                    'end_date' => $sub->end_date,
+                    'status' => $sub->status
+                ];
+            })
+        ]);
+    }
+
+>>>>>>> Stashed changes
 
 }

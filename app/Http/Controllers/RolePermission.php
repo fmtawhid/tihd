@@ -51,7 +51,7 @@ class RolePermission extends Controller
             }
         }
 
-        \Artisan::call('cache:clear');
+        \Artisan::call('cache:clear'); 
 
         return redirect()->route('backend.permission-role.list')->withSuccess(__('permission-role.save_form'));
     }
