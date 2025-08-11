@@ -304,8 +304,6 @@ class SubscriptionController extends Controller
         return $pdf->download('invoice-'.$subscription->id.'.pdf');
     }
 
-<<<<<<< Updated upstream
-=======
  
     // AJAX Search for Select2
     public function search(Request $request)
@@ -358,6 +356,5 @@ class SubscriptionController extends Controller
         ]);
     }
 
->>>>>>> Stashed changes
 
 }

@@ -10,7 +10,7 @@ class PlanLimitationMapping extends Model
     protected $table = 'planlimitation_mapping';
 
     protected $fillable = ['plan_id','limitation_slug', 'planlimitation_id','limitation_value','limit'];
- 
+
     public function limitation_data()
     {
         return $this->belongsTo(PlanLimitation::class, 'planlimitation_id', 'id')->withTrashed();

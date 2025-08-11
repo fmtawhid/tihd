@@ -40,6 +40,7 @@ class GenerateMenus
                     'title' => __('sidebar.dashboard'),
                     'route' => 'backend.home',
                     'active' => ['app', 'app/dashboard'],
+                    'permission' => ['view_dashboard_setting'],
                     'order' => 0,
                 ]);
             }
@@ -82,21 +83,13 @@ class GenerateMenus
             ]);
           }
 
-<<<<<<< Updated upstream
-          if(isenablemodule('tvshow')==1){
-=======
           if(isenablemodule('tvshows')==0 || isenablemodule('seasons')==0 || isenablemodule('episodes')==0 ){
->>>>>>> Stashed changes
 
             $tv_show = $this->parentMenu($menu, [
                 'icon' => 'ph ph-television-simple',
                 'title' => __('sidebar.tv_show'),
                 'nickname' => 'tv_show',
-<<<<<<< Updated upstream
-                'permission' => ['view_tvshow'],
-=======
                 'permission' => ['view_tvshows', 'view_seasons', 'view_episodes'],
->>>>>>> Stashed changes
                 'order' => 0,
             ]);
 
@@ -265,12 +258,9 @@ class GenerateMenus
                 'title' => __('sidebar.user'),
                 'route' => 'backend.users.index',
                 'active' => ['app/users'],
-<<<<<<< Updated upstream
-=======
                 'nickname' => 'users',
                 'shortTitle' => 'u',
                 'permission' => ['view_users'],
->>>>>>> Stashed changes
                 'order' => 0,
             ]);
 
@@ -291,12 +281,9 @@ class GenerateMenus
                 'title' => __('sidebar.review'),
                 'route' => 'backend.reviews.index',
                 'active' => ['app/reviews'],
-<<<<<<< Updated upstream
-=======
                 'nickname' => 'reviews',
                 'shortTitle' => 'r',
                 'permission' => ['view_reviews'],
->>>>>>> Stashed changes
                 'order' => 0,
             ]);
 
@@ -341,25 +328,7 @@ class GenerateMenus
                     'order' => 0,
                 ]);
 
-<<<<<<< Updated upstream
-            $mobile_setting = $this->parentMenu($menu, [
-                'icon' => 'ph ph-device-mobile',
-                'route' => '',
-                'title' => __('sidebar.mobile_setting'),
-                'nickname' => 'mobile_setting',
-                'order' => 0,
-            ]);
-            $this->childMain($mobile_setting, [
-                'icon' => 'ph ph-gear',
-                'title' => __('sidebar.dashboard_setting'),
-                'route' => 'backend.mobile-setting.index',
-                'active' => 'app/mobile-setting',
-                'permission' => ['view_setting'],
-                'order' => 0,
-            ]);
-=======
                 if(auth()->user()->hasRole('admin')){
->>>>>>> Stashed changes
 
                 $this->childMain($mobile_setting, [
                     'icon' => 'ph ph-gear-six',
@@ -416,7 +385,7 @@ class GenerateMenus
                 'title' => __('sidebar.settings'),
                 'route' => 'backend.settings.general',
                 'active' => 'app/setting/general-setting',
-                // 'permission' => ['view_setting'],
+                'permission' => ['view_setting'],
                 'order' => 0,
             ]);
 
@@ -455,7 +424,7 @@ class GenerateMenus
                 'title' => __('faq.title'),
                 'route' => 'backend.faqs.index',
                 'active' => ['app/faqs'],
-                // 'permission' => ['view_faqs'],
+                'permission' => ['view_faq'],
                 'order' => 0,
             ]);
 

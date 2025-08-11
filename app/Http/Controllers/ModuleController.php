@@ -130,6 +130,7 @@ class ModuleController extends Controller
 
         return response()->json(['message' => $message, 'status' => true], 200);
     }
+    
 
     /**
      * Display the specified resource.

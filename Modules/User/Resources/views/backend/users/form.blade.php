@@ -178,8 +178,6 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-<<<<<<< Updated upstream
-=======
                 <div class="card mt-3"> 
                     <div class="card-body">
                         <h5 class="card-title">{{ __('users.lbl_roles') }}</h5>
@@ -204,7 +202,6 @@
 
 
 
->>>>>>> Stashed changes
                 <div class="col-md-12">
                     <label for="address" class="form-label">{{ __('users.lbl_address') }}</label>
                     <textarea class="form-control" name="address" id="address" rows="6"

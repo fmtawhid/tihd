@@ -16,7 +16,7 @@ class Subscription extends BaseModel
     protected $fillable = ['plan_id',
         'user_id',
         'device_id',
-        'start_date', 
+        'start_date',
         'end_date',
         'status',
         'amount',

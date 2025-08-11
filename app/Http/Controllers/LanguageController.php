@@ -18,7 +18,7 @@ class LanguageController extends Controller
         setlocale(LC_TIME, $language);
 
         Carbon::setLocale($language);
-        session()->put('dir',  $dir);
+        session()->put('dir',  $dir); 
         // return redirect('/');
         return redirect()->back(); // <-- This line keeps the user on the same page
     }

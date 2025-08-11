@@ -30,8 +30,10 @@ class RolePermission extends Controller
         $modules = config('constant.MODULES');
         $permissions = Permission::get();
         $module_action = 'List';
+        $allAvailablePermissions = Permission::pluck('name')->toArray();
 
-        return view('permission-role.permissions', compact('roles', 'permissions', 'module_title', 'module_name', 'module_action', 'modules'));
+
+        return view('permission-role.permissions', compact('roles', 'permissions', 'module_title', 'module_name', 'module_action', 'modules', 'allAvailablePermissions'));
     }
 
     public function store(Request $request, Role $role_id)
@@ -76,4 +78,6 @@ class RolePermission extends Controller
 
         return response()->json(['status' => true, 'message' => $message]);
     }
+
+    
 }

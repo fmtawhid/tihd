@@ -225,21 +225,26 @@ class UsersController extends Controller
      * @return Response
      */
 
-      public function create()
+    //   public function create()
+    // {
+    //     $module_title = __('users.lbl_add_new_user');
+    //     $mediaUrls = getMediaUrls();
+
+    //   return view('user::backend.users.form',compact('module_title','mediaUrls'));
+    // }
+    public function create()
     {
         $module_title = __('users.lbl_add_new_user');
         $mediaUrls = getMediaUrls();
+        $roles = \Spatie\Permission\Models\Role::all(); // Add this
+        $userRoles = []; // Add this
 
-      return view('user::backend.users.form',compact('module_title','mediaUrls'));
+        return view('user::backend.users.form', compact('module_title', 'mediaUrls', 'roles', 'userRoles'));
     }
 
     public function store(UserRequest $request)
-<<<<<<< Updated upstream
-    {
-=======
     { 
         
->>>>>>> Stashed changes
         $data = $request->except('profile_image');
 
         $data['password']=Hash::make($data['password']);
@@ -249,7 +254,14 @@ class UsersController extends Controller
 
 
         $user = User::create($data);
-        $user->assignRole('user');
+        // $user->assignRole('user');
+        // Assign selected roles
+        if ($request->has('roles')) {
+            $user->syncRoles($request->roles);
+        } else {
+            // Default role if none selected
+            $user->assignRole('user');
+        }
 
         $message = trans('messages.create_form');
         return redirect()->route('backend.users.index')->with('success', 'User added successfully!');
@@ -267,8 +279,10 @@ class UsersController extends Controller
         $data = User::find($id);
         $mediaUrls = getMediaUrls();
         $module_title = __('users.lbl_edit_user');
-    return view('user::backend.users.form', compact('data','mediaUrls','module_title'));
+        $roles = \Spatie\Permission\Models\Role::all(); // Add this
+        $userRoles = $data->roles->pluck('name')->toArray(); // Add this
 
+        return view('user::backend.users.form', compact('data', 'mediaUrls', 'module_title', 'roles', 'userRoles'));
     }
 
     /**

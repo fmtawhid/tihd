@@ -1,15 +1,8 @@
 @extends('backend.layouts.app')
 
-@section('title')
-    Manual Subscription Add
-@endsection
+@section('title', 'Manual Subscription Add')
 
 @section('content')
-<<<<<<< Updated upstream
-<div class="card">
-    <div class="card-header">
-        <h4>Add Manual Subscription</h4>
-=======
 <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <!-- jQuery -->
@@ -96,50 +89,122 @@
                 </form>
             </div>
         </div>
->>>>>>> Stashed changes
     </div>
-    <div class="card-body">
-        <form action="{{ route('backend.subscriptions.manual') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label>User</label>
-                <select name="user_id" class="form-control" required>
-                    <option value="">Select User</option>
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->full_name }} ({{ $user->email }})</option>
-                    @endforeach
-                </select>
+
+    <!-- Right Side: User Info -->
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-header bg-secondary text-white rounded-top-4">
+                <h5 class="mb-0 pb-3">👤 User Profile & Subscriptions</h5>
             </div>
-            <div class="mb-3">
-                <label>Plan</label>
-                <select name="plan_id" class="form-control" required>
-                    <option value="">Select Plan</option>
-                    @foreach($plans as $plan)
-                        <option value="{{ $plan->id }}">{{ $plan->name }} ({{ $plan->price }})</option>
-                    @endforeach
-                </select>
+            <div class="card-body">
+                <!-- Search User -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Search User</label>
+                    <select id="profileSearchSelect" class="form-control"></select>
+                </div>
+
+                <!-- User Info Placeholder -->
+                <div id="userInfo" class="text-muted">
+                    🔍 Search a user to see profile details & subscriptions here.
+                </div>
             </div>
-            <div class="mb-3">
-                <label>Amount</label>
-                <input type="number" name="amount" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Payment Status</label>
-                <select name="payment_status" class="form-control" required>
-                    <option value="paid">Paid</option>
-                    <option value="pending">Pending</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label>Payment Type</label>
-                <input type="text" name="payment_type" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Transaction ID</label>
-                <input type="text" name="transaction_id" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Add Subscription</button>
-        </form>
+        </div>
     </div>
 </div>
+
+<script>
+$(function() {
+    // Left form search - select user to add subscription for
+    $('#userSearchSelect').select2({
+        placeholder: 'Search by name, email, or phone',
+        ajax: {
+            url: '{{ route("backend.users.search") }}',
+            dataType: 'json',
+            delay: 250,
+            data: params => ({ q: params.term }),
+            processResults: data => ({ results: data }),
+            cache: true
+        }
+    });
+
+    // Right side profile search - show user info and subscriptions
+    $('#profileSearchSelect').select2({
+        placeholder: 'Search by name, email, or phone',
+        ajax: {
+            url: '{{ route("backend.users.search") }}',
+            dataType: 'json',
+            delay: 250,
+            data: params => ({ q: params.term }),
+            processResults: data => ({ results: data }),
+            cache: true
+        }
+    });
+
+    // On selecting a user in profile search, fetch and display user info & subscriptions
+$('#profileSearchSelect').on('select2:select', function(e) {
+    let userId = e.params.data.id;
+
+    $.get('{{ url("app/backend/users/info") }}/' + userId, function(data) {
+        if (data.error) {
+            $('#userInfo').html('<p class="text-danger">User not found.</p>');
+            return;
+        }
+
+        let subsHtml = '';
+        if (data.subscriptions && data.subscriptions.length) {
+            subsHtml = '<div class="list-group">';
+            data.subscriptions.forEach(sub => {
+                // তারিখ ফরম্যাট dd/mm/yy
+                let start = new Date(sub.start_date);
+                let end = new Date(sub.end_date);
+                let today = new Date();
+
+                let startFormatted = start.toLocaleDateString('en-GB'); // dd/mm/yy
+                let endFormatted = end.toLocaleDateString('en-GB'); // dd/mm/yy
+
+                // বাকি দিন বা আগে কতদিন হয়েছে
+                let diffTime = end - today;
+                let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                let expiryText = '';
+                if (diffDays > 0) {
+                    expiryText = `<span class="badge bg-success">Expires in ${diffDays} days</span>`;
+                } else if (diffDays === 0) {
+                    expiryText = `<span class="badge bg-warning text-dark">Expires Today</span>`;
+                } else {
+                    expiryText = `<span class="badge bg-danger">Expired ${Math.abs(diffDays)} days ago</span>`;
+                }
+
+                subsHtml += `
+                    <div class="list-group-item mb-2 border rounded shadow-sm">
+                        <div class="fw-bold text-primary mb-1">${sub.plan}</div>
+                        <div>💰 Price: <strong>${sub.price}</strong></div>
+                        <div>📅 From: ${startFormatted} → To: ${endFormatted}</div>
+                        <div>📌 Status: <strong>${sub.status}</strong></div>
+                        <div class="mt-1">${expiryText}</div>
+                    </div>
+                `;
+            });
+            subsHtml += '</div>';
+        } else {
+            subsHtml = '<p>No subscriptions found.</p>';
+        }
+
+        $('#userInfo').html(`
+            <div class="p-3 border rounded shadow-sm bg-dark text-white">
+                <p><strong>Name:</strong> ${data.name}</p>
+                <p><strong>Email:</strong> ${data.email}</p>
+                <p><strong>Phone:</strong> ${data.phone}</p>
+                <h6 class="mt-3">📦 Subscriptions:</h6>
+                ${subsHtml}
+            </div>
+        `);
+    }).fail(() => {
+        $('#userInfo').html('<p class="text-danger">Failed to load user data.</p>');
+    });
+});
+
+});
+</script>
 @endsection
