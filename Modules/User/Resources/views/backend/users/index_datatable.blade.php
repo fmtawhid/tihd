@@ -17,8 +17,8 @@
                             <option value="change-status">{{ __('messages.lbl_status') }}</option>
 
                             <option value="permanently-delete">{{ __('messages.delete') }}</option>
-                            <!-- <option value="restore">{{ __('messages.restore') }}</option>
-                            <option value="permanently-delete">{{ __('messages.permanent_dlt') }}</option> -->
+                            <option value="restore">{{ __('messages.restore') }}</option>
+                            <option value="permanently-delete">{{ __('messages.permanent_dlt') }}</option>
                         </select>
                     </div>
                     <div class="select-status d-none quick-action-field" id="change-status-action">
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-                        @endif
+          @endif
             <x-slot name="toolbar">
             @if($type=='soon-to-expire')
             <button id="send-email-btn" class="btn btn-primary">{{ __('messages.send_reminder') }}</button>

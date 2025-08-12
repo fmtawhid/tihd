@@ -7,21 +7,23 @@
     <div class="row mt-3">
         <div class="col-lg-8">
             <div class="row">
+                @can('view_users')
                 <div class="col-md-4 col-sm-6">
-                <a href="{{ route('backend.users.index') }}">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="card-icon mb-5 fs-1">
-                                <i class="ph ph-user"></i>
-                            </div>
-                            <div class="card-data">
-                                <h1 class="">{{ $totalusers }}</h1>
-                                <p class="mb-0 fs-6">{{ __('dashboard.lbl_total_users') }}</p>
+                    <a href="{{ route('backend.users.index') }}">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="card-icon mb-5 fs-1">
+                                    <i class="ph ph-user"></i>
+                                </div>
+                                <div class="card-data">
+                                    <h1 class="">{{ $totalusers }}</h1>
+                                    <p class="mb-0 fs-6">{{ __('dashboard.lbl_total_users') }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                 </div>
+                @endcan
                 <!-- <div class="col-md-4 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-body">
@@ -35,6 +37,7 @@
                         </div>
                     </div>
                 </div> -->
+                @can('view_subscription')
                 <div class="col-md-4 col-sm-6">
                     <a href="{{ route('backend.subscriptions.index') }}">
                     <div class="card card-stats">
@@ -51,65 +54,74 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                <a href="{{ route('backend.users.index', ['type' => 'soon-to-expire']) }}">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="card-icon mb-5 fs-1">
-                                <i class="ph ph-hourglass"></i>
-                            </div>
-                            <div class="card-data">
-                                <h1 class="">{{ $totalsoontoexpire }}</h1>
-                                <p class="mb-0 fs-6">{{ __('dashboard.lbl_soon_to_expire') }}</p>
+                    <a href="{{ route('backend.users.index', ['type' => 'soon-to-expire']) }}">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="card-icon mb-5 fs-1">
+                                    <i class="ph ph-hourglass"></i>
+                                </div>
+                                <div class="card-data">
+                                    <h1 class="">{{ $totalsoontoexpire }}</h1>
+                                    <p class="mb-0 fs-6">{{ __('dashboard.lbl_soon_to_expire') }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                 </div>
+                @endcan
+
+                @can('view_reviews')
                 <div class="col-md-4 col-sm-6">
-                <a href="{{ route('backend.reviews.index') }}">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="card-icon mb-5 fs-1">
-                                <i class="ph ph-code-block"></i>
-                            </div>
-                            <div class="card-data">
-                                <h1 class="">{{ $totalreview }}</h1>
-                                <p class="mb-0 fs-6">{{ __('dashboard.lbl_review') }}</p>
+                    <a href="{{ route('backend.reviews.index') }}">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="card-icon mb-5 fs-1">
+                                    <i class="ph ph-code-block"></i>
+                                </div>
+                                <div class="card-data">
+                                    <h1 class="">{{ $totalreview }}</h1>
+                                    <p class="mb-0 fs-6">{{ __('dashboard.lbl_review') }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                 </div>
+                @endcan
+               
                 <div class="col-md-4 col-sm-6">
-                <a >
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="card-icon mb-5 fs-1">
-                                <i class="ph ph-lockers"></i>
-                            </div>
-                            <div class="card-data">
-                                <h1 class="">{{ $totalUsageFormatted }}</h1>
-                                <p class="mb-0 fs-6">{{ __('dashboard.lbl_storage_full') }}</p>
+                    <a>
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="card-icon mb-5 fs-1">
+                                    <i class="ph ph-lockers"></i>
+                                </div>
+                                <div class="card-data">
+                                    <h1 class="">{{ $totalUsageFormatted }}</h1>
+                                    <p class="mb-0 fs-6">{{ __('dashboard.lbl_storage_full') }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                 </div>
+             
+
+                @can('view_subscription')
                 <div class="col-md-4 col-sm-6">
                     <a href="{{ route('backend.subscriptions.index') }}">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="card-icon mb-5 fs-1">
-                                <i class="ph ph-money"></i>
-                            </div>
-                            <div class="card-data">
-                                <h1 class="">{{ Currency::format( $total_revenue) }}</h1>
-                                <p class="mb-0 fs-6">{{ __('dashboard.lbl_total_revenue') }}</p>
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="card-icon mb-5 fs-1">
+                                    <i class="ph ph-money"></i>
+                                </div>
+                                <div class="card-data">
+                                    <h1 class="">{{ Currency::format( $total_revenue) }}</h1>
+                                    <p class="mb-0 fs-6">{{ __('dashboard.lbl_total_revenue') }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                 </div>
+                @endcan
                 <!-- @if(isenablemodule('movie')==1)
                 <div class="col-md-4 col-sm-6">
                 <a href="{{ route('backend.movies.index') }}">
@@ -163,6 +175,7 @@
                 @endif -->
             </div>
         </div>
+        @can('view_genres')
         <div class="col-lg-4">
             <div class="card card-stats">
                 <div class="card-header">
@@ -173,6 +186,9 @@
                 </div>
             </div>
         </div>
+        @endcan
+        
+        @can('view_subscription')
         <div class="col-md-6">
             <div class="card card-stats card-block card-height">
                 <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -193,6 +209,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-md-6">
             <div class="card card-stats card-block card-height">
                 <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -213,6 +230,7 @@
                 </div>
             </div>
         </div>
+        @endcan
         <div class="col-md-6">
             <div class="card card-block card-height">
                 <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -233,6 +251,7 @@
                 </div>
             </div>
         </div>
+        @can('view_reviews')
         <div class="col-md-6">
             <div class="card card-stats card-block card-height">
                 <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -289,8 +308,11 @@
                 </div>
             </div>
         </div>
+        @endcan
+
         <div class="col-12">
             <div class="row">
+                
                 <div class="col-lg-4 col-md-6">
                     <div class="card card-block card-height">
                         <div class="card-header card-header-primary">
@@ -301,6 +323,9 @@
                         </div>
                     </div>
                 </div>
+            
+
+                @can('view_subscription')
                 <div class="col-lg-8 col-md-6">
                     <div class="card card-block card-height">
                         <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3">
@@ -347,7 +372,14 @@
                         </div>
                     </div>
                 </div>
+                @endcan
             </div>
+
+
+
+
+
+
         </div>
     </div>
 </div>

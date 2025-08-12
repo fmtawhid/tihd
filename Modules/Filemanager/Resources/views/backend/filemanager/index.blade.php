@@ -9,8 +9,12 @@
                 <nav>
                     <div class="mb-3 nav nav-underline nav-tabs justify-content-between p-0 border-bottom rounded-0" id="nav-tab" role="tablist">
                         <div class="d-flex align-items-center gap-3">
+                            @can('add_media')
                             <button class="nav-link d-flex align-items-center rounded-0" id="nav-upload-files-tab" data-bs-toggle="tab" data-bs-target="#nav-upload" type="button" role="tab" aria-controls="nav-upload" aria-selected="true">{{__('messages.upload_media')}}</button>
+                            @endcan
+                            @can('view_media')
                             <button class="nav-link rounded-0 active" id="nav-media-library-tab" data-bs-toggle="tab" data-bs-target="#nav-media" type="button" role="tab" aria-controls="nav-media" aria-selected="false">{{__('messages.view_library')}}</button>
+                            @endcan
                         </div>
                         <div class="media-search py-2 " id="media-search-containers">
                             <div class="d-flex">

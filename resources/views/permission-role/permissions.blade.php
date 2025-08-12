@@ -23,7 +23,7 @@
             </div>
             <div class="card-body"> 
                 @foreach ($roles as $role)
-                    @if ($role->name !== 'admin')
+                    @if (!in_array($role->name, ['admin', 'user']))
                         {{ html()->form('post', route('backend.permission-role.store', $role->id))->open() }}
 
                         <div class="permission-collapse border rounded p-3 mb-3" id="permission_{{$role->id}}">
@@ -158,20 +158,61 @@
 </div>
 
 <script>
+// function delete_role(role_id) {
+//     var url = "{{ route('backend.role.destroy', ['role' => ':role_id']) }}".replace(':role_id', role_id);
+//     $.ajax({
+//         url: url,
+//         type: 'DELETE',
+//         dataType: 'json',
+//         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+//         success: function(response) {
+//             $('#permission_' + role_id).hide();
+//             successSnackbar(response.message);
+//         },
+//         error: function() { alert('error'); }
+//     });
+// }
 function delete_role(role_id) {
-    var url = "{{ route('backend.role.destroy', ['role' => ':role_id']) }}".replace(':role_id', role_id);
-    $.ajax({
-        url: url,
-        type: 'DELETE',
-        dataType: 'json',
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        success: function(response) {
-            $('#permission_' + role_id).hide();
-            successSnackbar(response.message);
-        },
-        error: function() { alert('error'); }
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var url = "{{ route('backend.role.destroy', ['role' => ':role_id']) }}"
+                .replace(':role_id', role_id);
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                dataType: 'json',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                success: function(response) {
+                    $('#permission_' + role_id).fadeOut();
+                    Swal.fire(
+                        'Deleted!',
+                        response.message,
+                        'success'
+                    );
+                },
+                error: function() {
+                    Swal.fire(
+                        'Error!',
+                        'Something went wrong while deleting.',
+                        'error'
+                    );
+                }
+            });
+        }
     });
 }
+
+
 </script>
 
 <style>
@@ -179,4 +220,6 @@ function delete_role(role_id) {
 .permission-collapse table tr td.hiddenRow table td { padding: 20px; }
 .permission-collapse table tr td.hiddenRow table tr:last-child td { border: none; }
 </style>
+
+
 @endsection

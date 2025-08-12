@@ -1,108 +1,50 @@
-@extends ('backend.layouts.app')
+@extends('backend.layouts.app')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
-
-
 @section('content')
-
 <div class="card">
     <div class="card-body">
-        <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
+        <h4>{{ __('Create Role') }}</h4>
 
-            <x-slot name="subtitle">
-                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-            </x-slot>
-            <x-slot name="toolbar">
-                <x-backend.buttons.return-back />
-            </x-slot>
-        </x-backend.section-header>
+        <form method="POST" action="{{ route('backend.role.store') }}">
+            @csrf
 
-        <hr>
-
-        <div class="row mt-4">
-            <div class="col">
-
-                {{ html()->form('POST', route('backend.roles.store'))->class('form-horizontal')->open() }}
-                {{ csrf_field() }}
-
-                <div class="row mb-3">
-                    <?php
-                    $field_name = 'name';
-                    $field_lable = __('labels.backend.roles.fields.name');
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
-                    <div class="col-12 col-sm-2">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-10">
-                        <div class="form-group">
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <?php
-                    $field_name = 'name';
-                    $field_lable = __("Abilities");
-                    $field_placeholder = $field_lable;
-                    $required = "";
-                    ?>
-                    <div class="col-12 col-sm-2">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-10">
-                        <div class="form-group">
-                            {{ __("List of permissions") }}
-                            <hr>
-                            @if ($permissions->count())
-                            @foreach($permissions as $permission)
-                            <div class="checkbox">
-                                {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
-                            </div>
-                            @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <x-buttons.create title="{{__('Create')}} {{ __($module_title) }}">
-                                {{__('Create')}}
-                            </x-buttons.create>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="float-end">
-                            <div class="form-group">
-                                <x-buttons.cancel />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{ html()->form()->close() }}
+            <div class="mb-3">
+                <label for="title">{{ __('Role Title') }}</label>
+                <input type="text" name="title" id="title" class="form-control" required value="{{ old('title') }}">
+                @error('title')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
-        </div>
-    </div>
 
-    <div class="card-footer">
-        <div class="row">
-            <div class="col">
-                <small class="float-end text-muted">
-
-                </small>
+            <div class="mb-3">
+                <label for="name">{{ __('Role Name') }}</label>
+                <input type="text" name="name" id="name" class="form-control" required value="{{ old('name') }}">
+                @error('name')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
-        </div>
+
+            <button type="submit" class="btn btn-success">{{ __('Create') }}</button>
+            <a href="{{ route('backend.role.index') }}" class="btn btn-secondary">{{ __('Cancel') }}</a>
+        </form>
     </div>
 </div>
 
+<script>
+document.getElementById('title').addEventListener('input', function() {
+    let val = this.value.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+    let nameInput = document.getElementById('name');
+    if (!nameInput.dataset.edited) {
+        nameInput.value = val;
+    }
+});
+
+document.getElementById('name').addEventListener('input', function() {
+    this.dataset.edited = true;
+});
+</script>
 @endsection

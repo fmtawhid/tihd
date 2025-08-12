@@ -11,18 +11,19 @@
                     <div class="">
                         <select name="action_type" class="form-control select2 col-12" id="quick-action-type" style="width:100%">
                             <option value="">{{ __('messages.no_action') }}</option>
-                            {{-- @can('edit_' . $module_name) --}}
+                            @can('edit_faq')
                             <option value="change-status">{{ __('messages.lbl_status') }}</option>
-                            {{-- @endcan
-                            @can('delete_' . $module_name) --}}
+                            @endcan
+                            @can('delete_faq')
                             <option value="delete">{{ __('messages.delete') }}</option>
-                            {{-- @endcan
-                            @can('restore_' . $module_name) --}}
+                            @endcan
+                            @can('restore_faq')
                             <option value="restore">{{ __('messages.restore') }}</option>
-                            {{-- @endcan
-                            @can('force_delete_' . $module_name) --}}
+                            @endcan
+                            @can('force_delete_faq')
                             <option value="permanently-delete">{{ __('messages.permanent_dlt') }}</option>
-                            {{-- @endcan --}}
+                            @endcan
+
                         </select>
                     </div>
                     <div class="select-status d-none quick-action-field" id="change-status-action">
@@ -54,11 +55,11 @@
                     <input type="text" class="form-control dt-search" placeholder="{{__('placeholder.lbl_search')}}" aria-label="Search" aria-describedby="addon-wrapping">
                 </div>
 
-                 {{-- @can('add_' . $module_name) --}}
+                @can('add_faq')
                  <a href="{{ route('backend.' . $module_name . '.create') }}" class="btn btn-primary d-flex align-items-center gap-1" id="add-post-button">
                     <i class="ph ph-plus-circle"></i>{{ __('messages.new') }}
                 </a>
-                {{-- @endcan --}}
+                @endcan
             </x-slot>
         </x-backend.section-header>
 

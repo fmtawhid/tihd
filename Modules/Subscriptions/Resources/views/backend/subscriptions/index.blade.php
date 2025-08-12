@@ -14,9 +14,11 @@
                 <button type="button" class="btn btn-dark" id="export-pdf-btn">
                     <i class="ph ph-export align-middle"></i> {{ __('messages.export') }}
                 </button>
+                @can('add_subscription')
                 <a href="{{ route('backend.subscriptions.manual') }}" class="btn btn-primary" id="export-pdf-btn">
                     <i class="ph ph-plus-circle align-middle me-1"></i> Add Subscription
                 </a>
+                @endcan
             </div>
 
             <x-slot name="toolbar">

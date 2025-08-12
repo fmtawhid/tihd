@@ -391,13 +391,44 @@ class GenerateMenus
 
             if(auth()->user()->hasRole('admin')){
 
-            $this->mainRoute($menu, [
+            // $this->mainRoute($menu, [
+            //     'icon' => 'ph ph-faders',
+            //     'title' => __('sidebar.access_control'),
+            //     'route' => 'backend.permission-role.list',
+            //     'active' => ['app/permission-role'],
+            //     'order' => 10,
+            // ]);
+            // Access Control Main Menu (Role & Assign)
+            $accessControl = $this->parentMenu($menu, [
                 'icon' => 'ph ph-faders',
                 'title' => __('sidebar.access_control'),
-                'route' => 'backend.permission-role.list',
-                'active' => ['app/permission-role'],
+                'nickname' => 'access_control',
+                // 'permission' => ['view_role', 'assign_role'],
                 'order' => 10,
             ]);
+
+            // Role List submenu
+            $this->childMain($accessControl, [
+                'icon' => 'ph ph-list-bullets',
+                'title' => __('Roles'),
+                'route' => 'backend.role.index',
+                'shortTitle' => 'RL',
+                'active' => 'app/role',
+                // 'permission' => ['view_role'],
+                'order' => 0,
+            ]);
+
+            // Assign Role submenu
+            $this->childMain($accessControl, [
+                'icon' => 'ph ph-user-plus',
+                'title' => __('Assign Permission'),
+                'route' => 'backend.permission-role.list',
+                'shortTitle' => 'AR',
+                'active' => 'app/permission-role',
+                // 'permission' => ['assign_role'],
+                'order' => 1,
+            ]);
+
         }
 
             $this->mainRoute($menu, [

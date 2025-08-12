@@ -2,154 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    
+    public function __construct()
+    {
+        $this->module_title = 'Role';
+        $this->module_name = 'role';
+        $this->module_icon = 'fa fa-users';
+        $this->module_action = 'List';
+    }
+
     public function index()
     {
-        $data = Role::all();
-        if (request()->wantsJson()) {
-            return response()->json(['data' => $data, 'status' => true]);
-        }
+        $roles = Role::whereNotIn('name', ['admin', 'user'])->paginate(10);
+
+        return view('backend.roles.index', [
+            'roles' => $roles,
+            'module_title' => $this->module_title,
+            'module_name' => $this->module_name,
+            'module_icon' => $this->module_icon,
+            'module_action' => 'List',
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
+    public function create()
     {
-        $data = new Role;
-        $view = view('permission-role.form-role', ['data' => $data])->render();
-
-        return response()->json(['data' => $view, 'status' => true]);
+        return view('backend.roles.create', [
+            'module_title' => $this->module_title,
+            'module_name' => $this->module_name,
+            'module_icon' => $this->module_icon,
+            'module_action' => 'Create',
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(RoleRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
+        $request->validate([
+            'title' => 'required|string|max:255|unique:roles,title',
+            'name'  => 'required|string|max:255|unique:roles,name',
+        ]);
 
-        $data = $this->setRoleArray($data);
+        Role::create([
+            'title' => $request->title,
+            'name'  => $request->name,
+        ]);
 
-        $role_data = Role::create($data);
-
-        if (isset($data['import_role'])) {
-            $import_role = $data['import_role'];
-
-            app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-
-            $role = Role::find($import_role);
-            $new_role = Role::find($role_data['id']);
-            $permissions = $role->permissions;
-
-            if ($new_role) {
-                $new_role->permissions()->syncWithoutDetaching($permissions);
-            }
-        }
-
-        $message = __('messages.create_form', ['form' => __('page.lbl_role')]);
-
-        return response()->json(['message' => $message, 'status' => true], 200);
+        return redirect()->route('backend.role.index')->with('success', 'Role created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Role $role)
     {
-        //
+        return view('backend.roles.edit', [
+            'role' => $role,
+            'module_title' => $this->module_title,
+            'module_name' => $this->module_name,
+            'module_icon' => $this->module_icon,
+            'module_action' => 'Edit',
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, Role $role)
     {
-        $data = Role::find($id);
-        $view = view('permission-role.form-role', ['data' => $data])->render();
+        $request->validate([
+            'title' => 'required|string|max:255|unique:roles,title,' . $role->id,
+            'name'  => 'required|string|max:255|unique:roles,name,' . $role->id,
+        ]);
 
-        return response()->json(['data' => $view, 'status' => true]);
+        $role->update([
+            'title' => $request->title,
+            'name'  => $request->name,
+        ]);
+
+        return redirect()->route('backend.role.index')->with('success', 'Role updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(RoleRequest $request, $id)
+    public function destroy(Role $role)
     {
-        if (env('IS_DEMO') == true) {
-            return redirect()->back()->with('error', __('messages.permission_denied'));
-        }
-        $role = Role::find($id);
-
-        $data = $request->all();
-
-        $data = $this->setRoleArray($data);
-
-        $role->update($data);
-
-        return redirect()->route('backend.permission-role.list')->withSuccess(__('messages.update_form', ['form' => __('permission-role.role_title')]));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        // if (env('IS_DEMO') == true) {
-        //     return redirect()->back()->with('error', __('messages.permission_denied'));
-        // }
-        $role = Role::findOrFail($id);
-
-        if (isset($role->id)) {
-            app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-
-            $permissions = Permission::get()->pluck('name')->toArray();
-
-            $role->permissions()->detach();
-
-            $role->delete();
-            $status = 'success';
-            $message = __('messages.delete_form', ['form' => __('page.lbl_role')]);
+        if (env('IS_DEMO')) {
+            return response()->json(['status' => false, 'message' => 'Permission denied in demo.']);
         }
 
-        return response()->json(['status' => true, 'message' => $message]);
+        $role->delete();
+
+        return response()->json(['status' => true, 'message' => 'Role deleted successfully.']);
     }
-
-    protected function setRoleArray(array $data): array
-    {
-        $data['name'] = strtolower(str_replace(' ', '_', preg_replace('/[^a-zA-Z0-9_.]/', '', $data['title'])));
-
-        $data['title'] = str_replace(' ', '_', preg_replace('/[^a-zA-Z0-9_.]/', '', $data['title']));
-
-        return $data;
-    }
+    
 }
