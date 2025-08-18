@@ -77,7 +77,12 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Payment Type</label>
-                        <input type="text" name="payment_type" class="form-control" required>
+                        <select name="payment_type" class="form-control" required>
+                            <option value="">-- Select Payment Type --</option>
+                            <option value="bank">Bank</option>
+                            <option value="custom">Custom</option>
+                            <option value="cash">Cash</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
