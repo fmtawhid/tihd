@@ -80,7 +80,6 @@
                         <select name="payment_type" class="form-control" required>
                             <option value="">-- Select Payment Type --</option>
                             <option value="bank">Bank</option>
-                            <option value="custom">Custom</option>
                             <option value="cash">Cash</option>
                         </select>
                     </div>
