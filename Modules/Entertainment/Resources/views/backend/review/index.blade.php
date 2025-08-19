@@ -30,16 +30,29 @@
 
 
 
-                <x-slot name="toolbar">
+            <x-slot name="toolbar">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text pe-0" id="addon-wrapping">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" 
+                            class="form-control dt-search" 
+                            placeholder="{{ __('placeholder.lbl_search') }}" 
+                            aria-label="Search"
+                            aria-describedby="addon-wrapping">
+                    </div>
 
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text pe-0" id="addon-wrapping"><i
-                            class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" class="form-control dt-search" placeholder="{{ __('placeholder.lbl_search') }}" aria-label="Search"
-                        aria-describedby="addon-wrapping">
+                    {{-- Create Review Button --}}
+                    @can('add_reviews')
+                    <a href="{{ route('backend.reviews.create') }}" class="btn btn-primary d-flex align-items-center gap-1"
+                        id="add-post-button"><i class="ph ph-plus-circle"></i>{{__('messages.new')}}</a>
+                    @endcan
                 </div>
+            </x-slot>
 
-                </x-slot>
+
+
 
             </x-backend.section-header>
 

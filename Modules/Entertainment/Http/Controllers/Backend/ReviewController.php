@@ -155,18 +155,41 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // public function create()
+    // {
+    //     return view('entertainment::create');
+    // }
+
+    // /**
+    //  * Store a newly created resource in storage.
+    //  */
+    // public function store(Request $request)
+    //  {
+    //     //
+    // }
     public function create()
     {
-        return view('entertainment::create');
+        $users = User::all();
+        $entertainments = Entertainment::all();
+
+        return view('entertainment::backend.review.create', compact('users', 'entertainments'));
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'entertainment_id' => 'required|exists:entertainments,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'required|string|max:1000',
+        ]);
+
+        Review::create($request->only('user_id','entertainment_id','rating','review'));
+
+        return redirect()->route('backend.reviews.index')
+            ->with('success', __('messages.create_success', ['form' => __('review.title')]));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-     {
-        //
-    }
+
 
     /**
      * Show the specified resource.
@@ -179,18 +202,44 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+    // public function edit($id)
+    // {
+    //     return view('entertainment::edit');
+    // }
+
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
     public function edit($id)
     {
-        return view('entertainment::edit');
+        $review = Review::findOrFail($id);
+        $users = User::all();
+        $entertainments = Entertainment::all();
+
+        return view('entertainment::backend.review.edit', compact('review', 'users', 'entertainments'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'entertainment_id' => 'required|exists:entertainments,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'required|string|max:1000',
+        ]);
+
+        $review = Review::findOrFail($id);
+        $review->update($request->only('user_id', 'entertainment_id', 'rating', 'review'));
+
+        return redirect()->route('backend.reviews.index')
+            ->with('success', __('messages.update_success', ['form' => __('review.title')]));
     }
+
      /**
      * Remove the specified resource from storage.
      *
