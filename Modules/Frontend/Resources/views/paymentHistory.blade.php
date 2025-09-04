@@ -113,9 +113,9 @@
                                     <td class="fw-bold text-white">{{ $subscription->name }}</td>
                                     <td class="fw-bold text-white">{{ $subscription->duration }} {{ $subscription->type }}</td>
                                     <td class="fw-bold text-white">{{ \Carbon\Carbon::parse($subscription->end_date)->format('d/m/Y') }}</td>
-                                    <td class="fw-bold text-white">${{ number_format($subscription->amount, 2) }}</td>
-                                    <td class="fw-bold text-white">${{ number_format($subscription->tax_amount, 2) }}</td>
-                                    <td class="fw-bold text-white">${{ number_format($subscription->total_amount, 2) }}</td>
+                                    <td class="fw-bold text-white">৳{{ number_format($subscription->amount, 2) }}</td>
+                                    <td class="fw-bold text-white">৳{{ number_format($subscription->tax_amount, 2) }}</td>
+                                    <td class="fw-bold text-white">৳{{ number_format($subscription->total_amount, 2) }}</td>
                                     <td class="fw-bold text-white">{{ ucfirst($subscription->subscription_transaction->payment_type ?? '-') }}</td>
                                     <td class="fw-bold text-white">{{ ucfirst($subscription->status ?? '-') }}</td>
                                     <td class="fw-bold"><a href="{{route('downloadinvoice', ['id' => $subscription->id])}}">{{__('frontend.download_invoice')}}</a></td>

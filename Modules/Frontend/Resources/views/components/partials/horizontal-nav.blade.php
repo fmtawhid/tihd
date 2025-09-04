@@ -20,7 +20,7 @@
       
       
       <h5 class="showfortv pb-2">Main Menu</h5>
-      <li class="nav-item atv">
+      <!-- <li class="nav-item atv">
         <a class="nav-link"  href="{{route('user.login')}}">
           <span class="item-name">{{__('frontend.home')}}</span>
         </a>
@@ -53,7 +53,50 @@
           <span class="item-name">{{__('frontend.livetv')}}</span>
         </a>
       </li>
+      @endif -->
+      <li class="nav-item atv">
+          <a class="nav-link {{ request()->routeIs('user.login') ? 'active' : '' }}" href="{{route('user.login')}}">
+              <span class="item-name">{{__('frontend.home')}}</span>
+          </a>
+      </li>
+
+      @if(isenablemodule('movie'))
+      <li class="nav-item atv">
+          <a class="nav-link {{ request()->routeIs('movies') ? 'active' : '' }}" href="{{ route('movies') }}">
+              <span class="item-name">{{__('frontend.movies')}}</span>
+          </a>
+      </li>
       @endif
+
+      @if(isenablemodule('tvshow'))
+      <li class="nav-item atv">
+          <a class="nav-link {{ request()->routeIs('tv-shows') ? 'active' : '' }}" href="{{ route('tv-shows') }}">
+              <span class="item-name">{{__('frontend.tvshows')}}</span>
+          </a>
+      </li>
+      @endif
+
+      @if(isenablemodule('video'))
+      <li class="nav-item atv">
+          <a class="nav-link {{ request()->routeIs('videos') ? 'active' : '' }}" href="{{ route('videos') }}">
+              <span class="item-name">{{__('frontend.video')}}</span>
+          </a>
+      </li>
+      @endif
+
+      @if(isenablemodule('livetv'))
+      <li class="nav-item atv">
+          <a class="nav-link {{ request()->routeIs('livetv') ? 'active' : '' }}" href="{{route('livetv')}}">
+              <span class="item-name">{{__('frontend.livetv')}}</span>
+          </a>
+      </li>
+      @endif
+      <style>
+        .nav-link.active .item-name {
+          color: red !important;
+      }
+
+      </style>
       @if(auth()->user())
       <h5 class="showfortv pb-2">Account Menu</h5>
       
