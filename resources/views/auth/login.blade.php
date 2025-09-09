@@ -28,7 +28,7 @@
     <div class="card shadow-lg border-0 rounded-4 overflow-hidden login-card">
         <div class="row g-0" style="background: #121D24;">
             
-            <!-- Left Side: Logo --> 
+            <!-- Left Side: Logo -->
             <div class="col-md-6 d-flex flex-column justify-content-center align-items-center p-5">
                 <a href="{{ url('/') }}">
                     <x-application-logo style="max-width: 200px;" />

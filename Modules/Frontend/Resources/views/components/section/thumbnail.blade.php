@@ -38,8 +38,7 @@
        data-encrypted="{{ $data }}"
        data-setup='{"playbackRates": [1, 1.5, 2], "muted": true}'>
     </video>
-
-
+    
     <div class="d-flex justify-content-end gap-3 mt-2 px-5">
       <button id="button" class="action-btn btn btn-dark d-flex gap-2 btn-sm items-center"><img height="28" src='https://tihd.tv/img/skip2.svg' /></button>
       <button id="button2" class="action-btn btn btn-dark d-flex btn-sm gap-2 items-center"><img height="28" src='https://tihd.tv/img/skip2.svg' /></button>

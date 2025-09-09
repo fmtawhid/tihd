@@ -30,7 +30,7 @@
 
 
 
-            <x-slot name="toolbar">
+              <x-slot name="toolbar">
                 <div class="d-flex align-items-center gap-2">
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text pe-0" id="addon-wrapping">
@@ -50,9 +50,6 @@
                     @endcan
                 </div>
             </x-slot>
-
-
-
 
             </x-backend.section-header>
 

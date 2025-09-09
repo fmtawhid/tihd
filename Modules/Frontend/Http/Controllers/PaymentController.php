@@ -79,9 +79,6 @@ class PaymentController extends Controller
     
        return response()->json(['redirect' => $redirectUrl]);
     }
-    
-
-
 
 
     public function paymentSuccess(Request $request)

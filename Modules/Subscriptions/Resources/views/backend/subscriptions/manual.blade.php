@@ -75,11 +75,11 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
+					<div class="mb-3">
                         <label class="form-label fw-semibold">Payment Type</label>
                         <select name="payment_type" class="form-control" required>
                             <option value="">-- Select Payment Type --</option>
-                            <option value="bank">Bank</option>
+                            <option value="bank">Bank/Bkash/Nogod</option>
                             <option value="cash">Cash</option>
                         </select>
                     </div>
@@ -159,7 +159,7 @@ $('#profileSearchSelect').on('select2:select', function(e) {
         if (data.subscriptions && data.subscriptions.length) {
             subsHtml = '<div class="list-group">';
             data.subscriptions.forEach(sub => {
-                // তারিখ ফরম্যাট dd/mm/yy
+                // তািখ ফরম্যাট dd/mm/yy
                 let start = new Date(sub.start_date);
                 let end = new Date(sub.end_date);
                 let today = new Date();
@@ -167,7 +167,7 @@ $('#profileSearchSelect').on('select2:select', function(e) {
                 let startFormatted = start.toLocaleDateString('en-GB'); // dd/mm/yy
                 let endFormatted = end.toLocaleDateString('en-GB'); // dd/mm/yy
 
-                // বাকি দিন বা আগে কতদিন হয়েছে
+                // বাকি িন বা আগে কতিন হয়েছে
                 let diffTime = end - today;
                 let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 

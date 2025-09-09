@@ -71,6 +71,8 @@ $footerData = getFooterData();
     </div>
   </div>
 
+  <img src="{{ asset('img/payment.png') }}" alt="">
+
   <div class="footer-bottom py-3">
     <div class="container-fluid">
       <div class="text-center">

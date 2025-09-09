@@ -14,7 +14,6 @@
                         </div>
                         <p class="text-danger" id="error_message"></p>
                         <form id="registerForm" action="post" class="requires-validation" data-toggle="validator" novalidate>
-
                             <div class="input-group mb-3">
                                 <span class="input-group-text px-0"><i class="ph ph-user"></i></span>
                                 <input type="text" name="first_name" class="form-control" placeholder="{{ __('frontend.first_name') }}" required >
@@ -30,6 +29,7 @@
                                 <input type="text" name="email" class="form-control" placeholder="{{ __('frontend.email') }}" required>
                                 <div class="invalid-feedback" id="email_error">Email field is required</div>
                             </div>
+                            
                             <div class="input-group mb-3">
                                 <span class="input-group-text px-0"><i class="ph ph-lock-key"></i></span>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="{{ __('frontend.password') }}" required>
