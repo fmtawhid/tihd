@@ -1,5 +1,5 @@
 <div class="page-title">
-        <h4 class="m-0 text-center">About Us</h4>
+        <h1 class="m-0 text-center h4">About Us</h4>
 </div>
 <div class="container">
     <div class="d-flex justify-content-between  flex-md-row flex-column-reverse">

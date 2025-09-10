@@ -14,12 +14,12 @@ class="nav navbar navbar-expand-xl navbar-light iq-navbar header-hover-menu left
                     <img src="{{  $mini_logo }}" height="30" alt="{{ app_name() }}">
                 </div>
 
-                <div class="logo-dark">
+                <!-- <div class="logo-dark">
                     @php
                     $dark_logo=GetSettingValue('dark_logo') ??  asset(setting('dark_logo'));
                  @endphp
                     <img src="{{ asset(setting('dark_logo')) }}" height="30" alt="{{ app_name() }}">
-                </div>
+                </div> -->
             </div>
         </a>
 

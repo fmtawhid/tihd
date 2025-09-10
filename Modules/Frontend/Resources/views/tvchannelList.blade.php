@@ -34,7 +34,7 @@
 
 <div class="list-page">
     <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.tv_channels')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.tv_channels')}}</h4>
     </div>
 
     <div class="section-spacing-bottom">

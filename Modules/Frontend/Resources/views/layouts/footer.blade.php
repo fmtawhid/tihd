@@ -11,6 +11,7 @@ $footerData = getFooterData();
           <div class="footer-logo mb-4">
             @include('frontend::components.partials.logo')
           </div>
+          <h1 class="h4">Ti Channel - Voice of Islam</h1>
           <p class="font-size-14">
             TI Channel is a platform dedicated to spreading the message of peace, knowledge, and understanding of Islam. Through inspiring content, thought-provoking discussions, and authentic teachings, it aims to educate and connect people with the true essence of Islam, fostering unity and harmony in communities worldwide.
           </p>
@@ -82,7 +83,7 @@ $footerData = getFooterData();
   </div>
 </footer>
 
-@include('frontend::components.partials.footer-sticky-menu')
+
 
 <!-- Scripts -->
 <script>

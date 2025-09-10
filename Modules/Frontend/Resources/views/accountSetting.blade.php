@@ -32,7 +32,7 @@
 @section('content')
 <div>
     <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.account_setting')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.account_setting')}}</h4>
     </div>
     <div class="section-spacing-bottom">
         <div class="container">

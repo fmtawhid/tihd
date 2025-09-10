@@ -30,7 +30,7 @@
                 <div class="d-flex align-items-center justify-content-center gap-3">
                     <img src="{{ setBaseUrlWithFileName($your_review->user->file_url ?? null )}}" alt="user" class="img-fluid user-img rounded-circle">
                     <div>
-                        <h6>{{ $your_review->user->full_name ?? 'Streamit User' }}</h6>
+                        <h6>{{ $your_review->user->full_name ?? 'TI Channel User' }}</h6>
                         <p class="mb-0">{{ $your_review->created_at->format('F j, Y') }}</p>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
     <div id="review-list-card">
         <div class="mt-5 mb-2 d-flex align-items-center justify-content-between">
         @if($total_review > 0)
-        <h5 class="m-0">{{ $total_review }} Reviews for {{ $title }}</h5>
+        <h1 class="m-0 h5">{{ $total_review }} Reviews for {{ $title }}</h1>
         @endif
         @if($total_review > 3)
 

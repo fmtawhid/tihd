@@ -13,7 +13,7 @@
                          @endforeach
                         </ul>
                     </div>
-                    <h4>{{ $data['name'] }}</h4>
+                    <h1 class="h4">{{ $data['name'] }}</h1>
                     <p class="font-size-14">{!! $data['description'] !!}
                     </p>
                     <ul class="list-inline mt-4 mb-0 mx-0 p-0 d-flex align-items-center flex-wrap gap-3 movie-metalist">

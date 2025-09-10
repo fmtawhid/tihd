@@ -29,7 +29,7 @@
 
 @section('content')
 <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.privacy_policy')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.privacy_policy')}}</h4>
 </div>
 
 <div class="section-spacing-bottom">

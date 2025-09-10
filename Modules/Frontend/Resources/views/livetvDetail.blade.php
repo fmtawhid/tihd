@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="movie-detail-content">
-                        <h4>{{ $data['name'] }}</h4>
+                        <h1 class="h4">{{ $data['name'] }}</h1>
                         <p class="font-size-14">{!! $data['description'] !!}</p>
                     </div>
                 </div>

@@ -33,7 +33,6 @@
     <meta name="twitter:site" content="@TI_Channel">
 @endsection
 
-
 @section('content')
     <!-- Main Banner -->
     @php

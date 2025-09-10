@@ -7,19 +7,19 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-center"  href="/movie">
+        <a class="nav-link text-center"  href="{{ route('movie')  }}">
           <i class="ph ph-magnifying-glass"></i>
           <span class="item-name">{{__('frontend.search')}}</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-center"  href="/comingsoon">
+        <a class="nav-link text-center"  href="{{ route('comingsoon')  }}">
           <i class="ph ph-megaphone"></i>
           <span class="item-name">{{__('frontend.coming_soon')}}</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-center"  href="/livetv">
+        <a class="nav-link text-center"  href="{{ route('livetv')  }}">
           <i class="ph ph-television-simple"></i>
           <span class="item-name">{{__('frontend.livetv')}}</span>
         </a>

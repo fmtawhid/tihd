@@ -30,7 +30,7 @@
 @section('content')
 <div class="faq-block section-spacing-bottom">
     <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.faq')}}</h4>
+        <h1 class="m-0 text-center h3">{{__('frontend.faq')}}</h1>
     </div>
     <div class="container">
         <div class="row">

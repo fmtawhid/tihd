@@ -4,7 +4,7 @@
 
 <div class="list-page">
     <div class="page-title" id="page_title">
-        <h4 class="m-0 text-center">{{__('frontend.video')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.video')}}</h4>
     </div>
     <div class="movie-lists section-spacing-bottom px-0">
         <div class="container-fluid">

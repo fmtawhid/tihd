@@ -26,7 +26,7 @@
 
                                 <img src="{{ $logo }}" class="img-fluid logo h-4 mb-4">
 
-                                <h5>{{ __('frontend.sign_in_title') }}</h5>
+                                <h1 class="h5">{{ __('frontend.sign_in_title') }}</h1>
                                 <!--  <p class="fs-14">{{ __('frontend.sign_in_sub_title') }}</p> -->
                                 @if (session()->has('error'))
                                     <span class="text-danger">{{ session()->get('error') }}</span>

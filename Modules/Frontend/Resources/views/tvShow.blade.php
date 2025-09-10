@@ -34,7 +34,7 @@
 
 <div class="list-page">
     <div class="page-title" id="page_title">
-        <h4 class="m-0 text-center">{{__('frontend.tvshows')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.tvshows')}}</h1>
     </div>
     <div class="movie-lists section-spacing-bottom">
         <div class="container-fluid">

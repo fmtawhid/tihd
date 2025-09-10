@@ -31,7 +31,7 @@
 @section('content')
 <div class="list-page section-spacing-bottom px-0">
     <div class="page-title" id="page_title">
-        <h4 class="m-0 text-center">{{__('frontend.watch_history')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.watch_history')}}</h4>
     </div>
     <div class="movie-lists">
         <div class="container-fluid">

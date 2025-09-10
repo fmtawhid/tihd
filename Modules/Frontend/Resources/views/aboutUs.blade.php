@@ -31,7 +31,7 @@
 
 @section('content')
 <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.about_us')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.about_us')}}</h4>
 </div>
 
 <div class="section-spacing-bottom">

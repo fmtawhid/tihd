@@ -4,7 +4,7 @@
 
 <div class="list-page section-spacing-bottom px-0">
     <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.continue_watching_movies')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.continue_watching_movies')}}</h4>
     </div>
     <div class="movie-list">
         <div class="container-fluid">

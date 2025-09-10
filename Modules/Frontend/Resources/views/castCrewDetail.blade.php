@@ -33,7 +33,7 @@
 <div class="section-spacing p-0">
     <div class="container-fluid">
         <div class="page-title">
-            <h4 class="m-0 text-center">{{ $data['name'] }}</h4>
+            <h1 class="m-0 text-center h4">{{ $data['name'] }}</h4>
         </div>
 
         <div id="castcrewdetail-section">

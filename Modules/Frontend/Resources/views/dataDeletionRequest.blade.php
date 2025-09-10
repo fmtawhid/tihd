@@ -1,7 +1,7 @@
 @extends('frontend::layouts.master')
 @section('content')
 <div class="page-title">
-        <h4 class="m-0 text-center">{{__('frontend.data_deletion_request')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.data_deletion_request')}}</h4>
 </div>
 
 <div class="section-spacing-bottom">

@@ -3,7 +3,7 @@
 <div class="review-page section-spacing-bottom px-0">
     <div class="container-fluid">
         <div class="page-title">
-            <h4 class="m-0 text-center">{{__('frontend.all')}} {{__('frontend.reviews')}}</h4>
+            <h1 class="m-0 text-center h4">{{__('frontend.all')}} {{__('frontend.reviews')}}</h4>
         </div>
         <div class="row">
             <div class="col-xl-3">

@@ -31,6 +31,8 @@
 
 @section('content')
 
+    <h1 class="m-0 text-center h4">{{__('frontend.livetv')}}</h1>
+  
     <div id="livetvthumbnail-section">
         @include('frontend::components.section.livetvthumbnail',  ['livetvthumbnail' => $responseData['slider']])
     </div>

@@ -29,7 +29,7 @@
 
 @section('content')
 <div class="page-title">
-        <h4 class="m-0 text-center">{{$page->name}}</h4>
+        <h1 class="m-0 text-center h3" >{{$page->name}}</h1>
 </div>
 
 <div class="section-spacing-bottom">

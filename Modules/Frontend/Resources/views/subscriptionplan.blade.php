@@ -4,7 +4,7 @@
 <div class="section-spacing-bottom">
     <div class="container" id="payment-container">
         <div class="page-title">
-            <h4 class="m-0 text-center">{{ __('frontend.subscription_plan') }}</h4>
+            <h1 class="m-0 text-center h4">{{ __('frontend.subscription_plan') }}</h4>
         </div>
         <div class="">
             <div class="upgrade-plan d-flex flex-wrap gap-3 align-items-center justify-content-between rounded p-4 bg-warning-subtle border border-warning">

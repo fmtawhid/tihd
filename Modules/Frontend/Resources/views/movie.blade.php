@@ -33,11 +33,11 @@
 <div class="list-page section-spacing-bottom px-0">
     <div class="page-title" id="page_title">
         @if (request()->route('language'))
-            <h4 class="m-0 text-center"> {{ ucfirst(request()->route('language')) }} </h4>
+            <h1 class="m-0 text-center h4"> {{ ucfirst(request()->route('language')) }} </h4>
         @elseif (request()->route('genre_id'))
-            <h4 class="m-0 text-center"> {{ ucfirst($genre->name) }} </h4>
+            <h1 class="m-0 text-center h4"> {{ ucfirst($genre->name) }} </h4>
         @else
-            <h4 class="m-0 text-center">{{__('frontend.movies')}}</h4>
+            <h1 class="m-0 text-center h4">{{__('frontend.movies')}}</h4>
         @endif
 
     </div>

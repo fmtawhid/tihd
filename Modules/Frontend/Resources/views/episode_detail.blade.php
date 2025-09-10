@@ -1,5 +1,42 @@
 @extends('frontend::layouts.master')
 
+@section('meta')
+@php
+    $episodeName = $data['name'];
+    $episodeDescription = strip_tags($data['description']);
+    $releaseYear = \Carbon\Carbon::parse($data['release_date'])->format('Y');
+    $genres = collect($data['genres'])->pluck('name')->implode(', ');
+    $metaTitle = "Watch " . $episodeName . " (" . $releaseYear . ") | TI Channel";
+    $ogUrl = url()->current();
+    $ogImage = asset($data['poster_image']);
+@endphp
+
+<title>{{ $metaTitle }}</title>
+<meta name="description" content="{{ Str::limit($episodeDescription, 155) }}">
+<meta name="keywords" content="{{ $episodeName }}, TV Show, Episode, {{ $genres }}, {{ $releaseYear }}, Islamic content, TI Channel">
+<meta name="author" content="TI Channel">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<link rel="canonical" href="{{ $ogUrl }}">
+
+<meta property="og:title" content="{{ $metaTitle }}">
+<meta property="og:description" content="{{ Str::limit($episodeDescription, 200) }}">
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:url" content="{{ $ogUrl }}">
+<meta property="og:type" content="video.episode">
+<meta property="og:site_name" content="TI Channel">
+<meta property="og:video:series" content="{{ $data['tvShowLinks'][0]['series_name'] ?? 'TI Channel TV Show' }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $metaTitle }}">
+<meta name="twitter:description" content="{{ Str::limit($episodeDescription, 200) }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
+<meta name="twitter:site" content="@TI_Channel">
+@endsection
+
+
+
 @section('content')
 
 <div id="thumbnail-section">
@@ -46,7 +83,6 @@
     </div>
 </div>
 
-
 <div id="seasons">
     @include('frontend::components.section.episodes',  ['data' => $data['tvShowLinks']])
 </div>
@@ -60,7 +96,6 @@
         @endif
     </div>
 </div>
-
 
 <div class="modal fade" id="DeviceSupport" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

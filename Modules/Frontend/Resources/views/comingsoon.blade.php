@@ -32,7 +32,7 @@
 @section('content')
 <div class="list-page section-spacing-bottom px-0 pt-5">
     <div class="page-title" id="page_title">
-        <h4 class="m-0 text-center">{{__('frontend.coming_soon')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.coming_soon')}}</h4>
     </div>
     <div id="comingsoon-card-list pt-5">
         <div class="container-fluid">

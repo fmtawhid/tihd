@@ -2,7 +2,7 @@
 @section('content')
 <div class="section-spacing-bottom">
     <div class="page-title" id="page_title">
-        <h4 class="m-0 text-center">{{__('frontend.my_watchlist')}}</h4>
+        <h1 class="m-0 text-center h4">{{__('frontend.my_watchlist')}}</h4>
     </div>
 
     <div class="container-fluid">
