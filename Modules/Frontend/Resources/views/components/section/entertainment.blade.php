@@ -44,7 +44,6 @@
     $class = trim("$baseClass $additionalClass");
 @endphp
 
-
     <div class="card-style-slider {{ count($data) <= 6 ? 'slide-data-less' : '' }}">
         <div class="{{  $class }}" data-items="6.5" data-items-desktop="5.5" data-items-laptop="4.5" data-items-tab="3.5" data-items-mobile-sm="3.5"
             data-items-mobile="2.5" data-speed="1000" data-autoplay="false" data-center="false" data-infinite="false"

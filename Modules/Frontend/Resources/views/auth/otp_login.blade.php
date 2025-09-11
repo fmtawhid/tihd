@@ -24,7 +24,7 @@
                                     $logo = GetSettingValue('dark_logo') ?? asset(setting('dark_logo'));
                                 @endphp
 
-                                <img src="{{ $logo }}" class="img-fluid logo h-4 mb-4">
+                                <img src="{{ $logo }}" class="img-fluid logo h-4 mb-4" alt="Logo">
 
                                 <h1 class="h5">{{ __('frontend.sign_in_title') }}</h1>
                                 <!--  <p class="fs-14">{{ __('frontend.sign_in_sub_title') }}</p> -->

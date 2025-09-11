@@ -49,7 +49,7 @@
                      <div class="bg-body p-3 d-flex justify-content-between align-items-center gap-3 rounded mb-4">
                         <div class="d-inline-flex align-items-center gap-3">
                            <div class="image flex-shrink-0">
-                              <img src="{{ setBaseUrlWithFileName(auth()->user()->file_url) }}" class="img-fluid dropdown-user-menu-image" alt="">
+                              <img src="{{ setBaseUrlWithFileName(auth()->user()->file_url)}}" class="img-fluid dropdown-user-menu-image" alt="User Image">
                            </div>
                            <div class="content">
                               <h6 class="mb-1">{{ auth()->user()->full_name ?? default_user_name() }}</h6>

@@ -84,7 +84,7 @@
                         @foreach ($data->entertainmentTalentMappings as $talentMapping)
                             @if (optional($talentMapping->talentprofile)->type == 'actor')
                                 <div class="actor">
-                                    <img src="{{ setBaseUrlWithFileName(optional($talentMapping->talentprofile)->file_url) }}" alt="" class="rounded avatar avatar-150">
+                                    <img src="{{ setBaseUrlWithFileName(optional($talentMapping->talentprofile)->file_url) }}" alt="{{ optional($talentMapping->talentprofile)->name }}" class="rounded avatar avatar-150">
                                     <h6 class="actor-title mb-0">{{ optional($talentMapping->talentprofile)->name ?? '-'}}</h6>
                                 </div>
                             @endif

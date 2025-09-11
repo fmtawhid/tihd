@@ -320,7 +320,7 @@
         </div>
 
     </div>
-
+<h1 class="h4 text-center">Ti Channel - Tihd TV</h1>
 
 
 @endsection
