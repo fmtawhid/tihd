@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\MobileSetting;
 use Modules\Entertainment\Models\Entertainment;
 use Modules\Banner\Models\Banner;
+
+use Modules\Genres\Models\Genres;
+use Modules\LiveTV\Models\LiveTvChannel;
+use Modules\Entertainment\Models\EntertainmentView;
+
+
 use App\Models\Device;
 use App\Models\User;
 use Modules\Banner\Transformers\SliderResource;
@@ -37,26 +43,216 @@ class FrontendController extends Controller
 
     }
 
-    public function index(Request $request)
-    {
-        $user_id = auth()->id();
-        $cacheKey = 'slider';
-        Cache::flush();
+    // public function index(Request $request)
+    // {
+    //     $user_id = auth()->id();
+    //     $cacheKey = 'slider';
+    //     Cache::flush();
 
-        $sliders = Cache::get($cacheKey);
-        if (!$sliders) {
-           $sliderList = Banner::where('status', 1)->get();
-           $sliders = SliderResource::collection($sliderList->map(function ($slider) use ($user_id) {
-                return new SliderResource($slider, $user_id);
-           }));
+    //     $sliders = Cache::get($cacheKey);
+    //     if (!$sliders) {
+    //        $sliderList = Banner::where('status', 1)->get();
+    //        $sliders = SliderResource::collection($sliderList->map(function ($slider) use ($user_id) {
+    //             return new SliderResource($slider, $user_id);
+    //        }));
 
-           $sliders = $sliders->toArray(request());
-           Cache::put($cacheKey, $sliders);
+    //        $sliders = $sliders->toArray(request());
+    //        Cache::put($cacheKey, $sliders);
 
+    //     }
+       
+
+    //     return view('frontend::index', compact('user_id','sliders'));
+    // }
+
+   public function index(Request $request)
+{
+    $user_id = auth()->id();
+
+    // ---- Slider Data ----
+    $sliderCacheKey = 'sliders';
+    $sliders = Cache::get($sliderCacheKey);
+
+    if (!$sliders) {
+        $sliderList = Banner::where('status', 1)->get();
+        $sliders = SliderResource::collection(
+            $sliderList->map(fn($slider) => new SliderResource($slider, $user_id))
+        )->toArray(request());
+
+        Cache::put($sliderCacheKey, $sliders, now()->addMinutes(30));
+    }
+
+    // ---- Mobile Setting Data ----
+    $mobileCacheKey = 'mobile_settings';
+    $mobileSettings = Cache::get($mobileCacheKey);
+
+    if (!$mobileSettings) {
+        $settings = MobileSetting::orderBy('position', 'asc')->get();
+
+        $mobileSettings = [];
+        foreach ($settings as $setting) {
+            $slug = $setting->slug;
+            $value = json_decode($setting->value, true);
+
+            switch ($slug) {
+                case 'your-favorite-personality':
+                    if(!empty($value)) {
+                        // raw ids
+                        $mobileSettings[$slug . '_ids'] = $value;
+
+                        // CastCrew data
+                        $mobileSettings[$slug] = \Modules\CastCrew\Models\CastCrew::whereIn('id', $value)->get();
+                    } else {
+                        $mobileSettings[$slug . '_ids'] = [];
+                        $mobileSettings[$slug] = collect();
+                    }
+                    break;
+
+                case 'popular-movies':
+                case 'latest-movies':
+                case 'top-10':
+                case 'popular-tvshows':
+                case 'popular-videos':
+                case '500-free-movies':
+                case 'enjoy-in-your-native-tongue':
+                    // Entertainment type fetch
+                    $type = match($slug) {
+                        'popular-movies', 'latest-movies', 'top-10', '500-free-movies' => 'movie',
+                        'popular-tvshows' => 'tvshow',
+                        'popular-videos' => 'video',
+                        default => null
+                    };
+
+                    if($type) {
+                        if(!empty($value)) {
+                            $mobileSettings[$slug] = Entertainment::whereIn('id', $value)
+                                ->where('type', $type)
+                                ->where('status', 1)
+                                ->whereDate('release_date', '<=', now())
+                                ->get();
+                        } else {
+                            $mobileSettings[$slug] = collect();
+                        }
+                    }
+                    break;
+
+                case 'genre':
+                    $mobileSettings[$slug] = Genres::where('status', 1)
+                        ->whereIn('id', $value ?: [])
+                        ->take(10)
+                        ->get();
+                    break;
+
+                case 'top-channels':
+                    $mobileSettings[$slug] = LiveTvChannel::where('status', 1)
+                        ->whereIn('id', $value ?: [])
+                        ->take(10)
+                        ->get();
+                    break;
+
+                default:
+                    $mobileSettings[$slug] = collect(); // fallback
+            }
         }
 
-        return view('frontend::index', compact('user_id','sliders'));
+        Cache::put($mobileCacheKey, $mobileSettings, now()->addMinutes(30));
     }
+
+    return view('frontend::index', compact('user_id', 'sliders', 'mobileSettings'));
+}
+
+
+//     public function index(Request $request)
+// {
+//     $user_id = auth()->id();
+
+//     // ---- Slider Data ----
+//     $sliderCacheKey = 'sliders';
+//     $sliders = Cache::get($sliderCacheKey);
+
+//     if (!$sliders) {
+//         $sliderList = Banner::where('status', 1)->get();
+//         $sliders = SliderResource::collection(
+//             $sliderList->map(fn($slider) => new SliderResource($slider, $user_id))
+//         )->toArray(request());
+
+//         Cache::put($sliderCacheKey, $sliders, now()->addMinutes(30));
+//     }
+
+//     // ---- Mobile Setting Data ----
+//     $mobileCacheKey = 'mobile_settings';
+//     $mobileSettings = Cache::get($mobileCacheKey);
+
+//     if (!$mobileSettings) {
+//         $settings = MobileSetting::orderBy('position', 'asc')->get();
+
+//         $mobileSettings = [];
+//         foreach ($settings as $setting) {
+//             $slug = $setting->slug;
+
+//             // getTypeValue() এর মতো করে slug অনুযায়ী ডেটা আনছি
+//             switch ($slug) {
+//                 case 'popular-movies':
+//                     $mobileSettings[$slug] = Entertainment::where('type', 'movie')
+//                         ->where('IMDb_rating', '>', 5)
+//                         ->whereDate('release_date', '<=', now())
+//                         ->where('status', 1)
+//                         ->orderBy('IMDb_rating', 'desc')
+//                         ->take(10)
+//                         ->get();
+//                     break;
+
+//                 case 'latest-movies':
+//                     $mobileSettings[$slug] = Entertainment::where('type', 'movie')
+//                         ->whereDate('release_date', '<=', now())
+//                         ->where('status', 1)
+//                         ->orderBy('release_date', 'desc')
+//                         ->take(10)
+//                         ->get();
+//                     break;
+
+//                 case 'top-10':
+//                     $topEntertainmentIds = EntertainmentView::groupBy('entertainment_id')
+//                         ->select('entertainment_id', DB::raw('count(*) as total'))
+//                         ->orderBy('total', 'desc')
+//                         ->take(10)
+//                         ->pluck('entertainment_id');
+//                     $mobileSettings[$slug] = Entertainment::whereIn('id', $topEntertainmentIds)
+//                         ->whereDate('release_date', '<=', now())
+//                         ->where('status', 1)
+//                         ->get();
+//                     break;
+//                 case 'popular-tvshows':
+//                     $ids = json_decode($setting->value, true);
+//                     $mobileSettings[$slug] = Entertainment::whereIn('id', $ids ?: [])
+//                         ->where('type', 'tvshows')
+//                         ->whereDate('release_date', '<=', now())
+//                         ->where('status', 1)
+//                         ->get();
+//                     break;
+
+
+//                 case 'genre':
+//                     $mobileSettings[$slug] = Genres::where('status', 1)->take(10)->get();
+//                     break;
+
+//                 case 'top-channels':
+//                     $mobileSettings[$slug] = LiveTvChannel::where('status', 1)->take(10)->get();
+//                     break;
+
+//                 // অন্য slug থাকলে এখানেও add করতে পারবেন
+//                 default:
+//                     $mobileSettings[$slug] = collect(); // fallback empty collection
+//             }
+//         }
+
+//         Cache::put($mobileCacheKey, $mobileSettings, now()->addMinutes(30));
+ 
+//     }
+
+//     return view('frontend::index', compact('user_id', 'sliders', 'mobileSettings'));
+// }
+
 
 
 

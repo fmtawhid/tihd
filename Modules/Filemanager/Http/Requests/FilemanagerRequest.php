@@ -9,7 +9,8 @@ class FilemanagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'file_url.*' => 'required|file|mimes:jpeg,jpg,png,gif,mov,mp4,avi',
+            'file_url.*' => 'required|file|mimes:jpeg,jpg,png,gif,svg,webp|max:5120',
+            // এখন webp ও allow হবে
         ];
     }
 
@@ -18,7 +19,8 @@ class FilemanagerRequest extends FormRequest
         return [
             'file_url.*.required' => 'File is required.',
             'file_url.*.file' => 'Each file must be a valid file.',
-            'file_url.*.mimes' => 'Each file must be a type of: jpeg, jpg, png, gif, mov, mp4, avi.',
+            'file_url.*.mimes' => 'Only image files are allowed: jpeg, jpg, png, gif, svg, webp.',
+            'file_url.*.max' => 'Image size must not exceed 5MB.',
         ];
     }
 
@@ -27,4 +29,3 @@ class FilemanagerRequest extends FormRequest
         return true;
     }
 }
-

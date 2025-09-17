@@ -2,9 +2,9 @@
 
 @section('meta')
 <!-- Basic Meta Tags -->
-<title>Watch History - TI Channel | Voice of Islam</title>
-<meta name="description" content="Your watch history on TI Channel. Explore the movies and TV shows you've watched.">
-<meta name="keywords" content="watch history, TI Channel, Voice of Islam, Islamic series, faith-based shows">
+<title>{{ $data['name'] }} - Islamic Series | TI Channel</title>
+<meta name="description" content="{{ Str::limit(strip_tags($data['description']), 155, '') }}">
+<meta name="keywords" content="{{ $data['name'] }}, Islamic series, Islamic teachings, faith-based series, TI Channel, Voice of Islam, spirituality, educational content, Islamic programs">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
@@ -13,20 +13,21 @@
 <link rel="canonical" href="{{ url()->current() }}">
 
 <!-- Open Graph Meta Tags (for social media) -->
-<meta property="og:title" content="Watch History - TI Channel | Voice of Islam">
-<meta property="og:description" content="Your watch history on TI Channel. Explore the movies and TV shows you've watched.">
-<meta property="og:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
+<meta property="og:title" content="{{ $data['name'] }} - Islamic Series | TI Channel">
+<meta property="og:description" content="{{ Str::limit(strip_tags($data['description']), 200, '') }}">
+<meta property="og:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
 <meta property="og:url" content="{{ url()->current() }}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="video.series">
 <meta property="og:site_name" content="TI Channel">
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Watch History - TI Channel | Voice of Islam">
-<meta name="twitter:description" content="Your watch history on TI Channel. Explore the movies and TV shows you've watched.">
-<meta name="twitter:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
+<meta name="twitter:title" content="{{ $data['name'] }} - Islamic Series | TI Channel">
+<meta name="twitter:description" content="{{ Str::limit(strip_tags($data['description']), 200, '') }}">
+<meta name="twitter:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 @section('content')
 <div class="list-page section-spacing-bottom px-0">
@@ -97,7 +98,7 @@
     @endforeach
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $(document).on('click', '.watch-list-btn', function(event) {

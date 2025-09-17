@@ -3,7 +3,7 @@
 @section('meta')
 <!-- Basic Meta Tags -->
 <title>Account - TI Channel | Manage Your Profile</title>
-<meta name="description" content="Manage your account on TI Channel. Update your profile, access your subscriptions, and customize your experience on the Voice of Islam platform.">
+<meta name="description" content="Manage your TI Channel account. Update your profile, view subscriptions, and personalize your Voice of Islam experience.">
 <meta name="keywords" content="TI Channel account, manage profile, update account, Voice of Islam, Islamic OTT platform, subscriptions, user account settings, account management">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 
 <!-- Open Graph Meta Tags (for social media) -->
 <meta property="og:title" content="Account - TI Channel | Manage Your Profile">
-<meta property="og:description" content="Manage your account on TI Channel. Update your profile, access your subscriptions, and customize your experience on the Voice of Islam platform.">
+<meta property="og:description" content="Manage your TI Channel account. Update your profile, view subscriptions, and personalize your Voice of Islam experience.">
 <meta property="og:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
@@ -23,10 +23,11 @@
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Account - TI Channel | Manage Your Profile">
-<meta name="twitter:description" content="Manage your account on TI Channel. Update your profile, access your subscriptions, and customize your experience on the Voice of Islam platform.">
+<meta name="twitter:description" content="Manage your TI Channel account. Update your profile, view subscriptions, and personalize your Voice of Islam experience.">
 <meta name="twitter:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 
 @section('content')

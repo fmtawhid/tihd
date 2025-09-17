@@ -89,8 +89,8 @@
                             <div class="invalid-feedback" id="name-error">TV Show field is required</div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="mb-3">
+                    <!-- <div class="col-md-6 col-lg-4">
+                        <div class="mb-3 ">
                             {{ html()->label(__('movie.lbl_trailer_url_type').' <span class="text-danger">*</span>', 'type')->class('form-label') }}
                             {{ html()->select(
                                     'trailer_url_type',
@@ -157,7 +157,38 @@
                             <div class="invalid-feedback" id="trailer-file-error">Video File field is required</div>
 
                         </div>
+                    </div> -->
+                    <div class="col-md-6 col-lg-4">
+                        <!-- Hide Trailer URL Type select -->
+                        <div class="mb-3 d-none">
+                            {{ html()->label(__('movie.lbl_trailer_url_type').' <span class="text-danger">*</span>', 'type')->class('form-label') }}
+                            {{ html()->select(
+                                    'trailer_url_type',
+                                    $upload_url_type->pluck('name', 'value')->prepend(__('placeholder.lbl_select_type'), ''),
+                                    old('trailer_url_type', 'HLS') // Default HLS
+                                )->class('form-control select2')->id('trailer_url_type') }}
+                            @error('trailer_url_type')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <!-- Show only URL input -->
+                        <div id="url_input">
+                            {{ html()->label(__('movie.lbl_trailer_url').' <span class="text-danger">*</span>', 'trailer_url')->class('form-label') }}
+                            {{ html()->text('trailer_url')->attribute('value', $data->trailer_url)->placeholder(__('placeholder.lbl_trailer_url'))->class('form-control')->attribute('required','required') }}
+                            @error('trailer_url')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <div class="invalid-feedback" id="trailer-url-error">Video URL field is required</div>
+                            <div class="invalid-feedback" id="trailer-pattern-error" style="display:none;">
+                                Please enter a valid URL starting with http:// or https://.
+                            </div>
+                        </div>
+
+                        <!-- Hide file input -->
+                        <div class="d-none" id="url_file_input"></div>
                     </div>
+
                     <div class="col-md-6 col-lg-4">
                         {{ html()->label(__('movie.lbl_movie_access') , 'movie_access')->class('form-label') }}
                         <div class="d-flex align-items-center">

@@ -3,7 +3,7 @@
 @section('meta')
 <!-- Basic Meta Tags -->
 <title>About Us - TI Channel | Voice of Islam</title>
-<meta name="description" content="Learn more about TI Channel, the Voice of Islam. Discover our mission, values, and dedication to delivering inspiring Islamic programs and series that uplift faith and spirituality.">
+<meta name="description" content="Learn about TI Channel, the Voice of Islam. Discover our mission, values, and inspiring Islamic programs that strengthen faith and spirituality.">
 <meta name="keywords" content="About TI Channel, Voice of Islam, Islamic OTT platform, Islamic programs, Islamic series, mission, values, Islamic content, faith-based platform, spirituality">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 
 <!-- Open Graph Meta Tags (for social media) -->
 <meta property="og:title" content="About Us - TI Channel | Voice of Islam">
-<meta property="og:description" content="Learn more about TI Channel, the Voice of Islam. Discover our mission, values, and dedication to delivering inspiring Islamic programs and series that uplift faith and spirituality.">
+<meta property="og:description" content="Learn about TI Channel, the Voice of Islam. Discover our mission, values, and inspiring Islamic programs that strengthen faith and spirituality.">
 <meta property="og:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
@@ -23,7 +23,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About Us - TI Channel | Voice of Islam">
-<meta name="twitter:description" content="Learn more about TI Channel, the Voice of Islam. Discover our mission, values, and dedication to delivering inspiring Islamic programs and series that uplift faith and spirituality.">
+<meta name="twitter:description" content="Learn about TI Channel, the Voice of Islam. Discover our mission, values, and inspiring Islamic programs that strengthen faith and spirituality.">
 <meta name="twitter:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection

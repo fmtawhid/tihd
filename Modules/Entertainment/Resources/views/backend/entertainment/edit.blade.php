@@ -105,7 +105,7 @@
                             @enderror
                             <div class="invalid-feedback" id="name-error">Name field is required</div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 d-none">
                             {{ html()->label(__('movie.lbl_trailer_url_type').' <span class="text-danger">*</span>', 'type')->class('form-label') }}
                             {{ html()->select(
                                     'trailer_url_type',
@@ -375,7 +375,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row gy-3">
-                    <div class="col-md-6">
+                    <div class="col-md-6 d-none">
                         {{ html()->label(__('movie.lbl_video_upload_type'), 'video_upload_type')->class('form-label') }}
                         {{ html()->select(
                                 'video_upload_type',
@@ -388,7 +388,7 @@
                         <div class="invalid-feedback" id="name-error">Video Type field is required</div>
                     </div>
 
-                    <div class="col-md-6 d-none" id="video_url_input_section">
+                    <div class="col-md-12 d-none" id="video_url_input_section">
                         {{ html()->label(__('movie.video_url_input'), 'video_url_input')->class('form-label') }}
                         {{ html()->text('video_url_input')->attribute('value', $data->video_url_input)->placeholder(__('placeholder.video_url_input'))->class('form-control')->id('video_url_input') }}
                         @error('video_url_input')
@@ -413,7 +413,7 @@
                             @endif
                         </div>
 
-                        <div class="input-group btn-video-link-upload mb-3">
+                        <div class="input-group btn-video-link-upload mb-3 ">
                             {{ html()->button(__('placeholder.lbl_select_file').'<i class="ph ph-upload"></i>')
                                 ->class('input-group-text form-control')
                                 ->type('button')

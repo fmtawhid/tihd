@@ -9,13 +9,10 @@
     <i class="ph {{ $inWatchlist ? 'ph-check' : 'ph-plus' }}"></i>
 </button>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
 
     $(document).ready(function() {
         $(document).on('click', '#watchlist-btn-{{ $entertainmentId }}', function(event) {
-
             event.preventDefault();
             var $this = $(this);
             if ($this.prop('disabled')) return;

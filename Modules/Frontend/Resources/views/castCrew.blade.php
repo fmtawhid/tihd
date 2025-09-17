@@ -3,7 +3,7 @@
 @section('meta')
 <!-- Basic Meta Tags -->
 <title>Speakers - TI Channel | Voice of Islam</title>
-<meta name="description" content="Explore the renowned speakers on TI Channel, the Voice of Islam. Discover their inspiring talks, teachings, and contributions to Islamic knowledge and spirituality.">
+<meta name="description" content="Discover renowned speakers on TI Channel, the Voice of Islam. Explore their inspiring talks, teachings, and contributions to Islamic knowledge.">
 <meta name="keywords" content="Islamic speakers, Voice of Islam, TI Channel speakers, renowned scholars, inspiring talks, Islamic teachings, faith leaders, spirituality, Islamic knowledge, Islamic lectures">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 
 <!-- Open Graph Meta Tags (for social media) -->
 <meta property="og:title" content="Speakers - TI Channel | Voice of Islam">
-<meta property="og:description" content="Explore the renowned speakers on TI Channel, the Voice of Islam. Discover their inspiring talks, teachings, and contributions to Islamic knowledge and spirituality.">
+<meta property="og:description" content="Discover renowned speakers on TI Channel, the Voice of Islam. Explore their inspiring talks, teachings, and contributions to Islamic knowledge.">
 <meta property="og:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
@@ -23,10 +23,11 @@
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Speakers - TI Channel | Voice of Islam">
-<meta name="twitter:description" content="Explore the renowned speakers on TI Channel, the Voice of Islam. Discover their inspiring talks, teachings, and contributions to Islamic knowledge and spirituality.">
+<meta name="twitter:description" content="Discover renowned speakers on TI Channel, the Voice of Islam. Explore their inspiring talks, teachings, and contributions to Islamic knowledge.">
 <meta name="twitter:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 
 @section('content')

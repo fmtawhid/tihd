@@ -3,8 +3,8 @@
 @section('meta')
 <!-- Basic Meta Tags -->
 <title>{{ $data['name'] }} - Speaker | TI Channel | Voice of Islam</title>
-<meta name="description" content="Learn more about {{ $data['name'] }} on TI Channel. Explore their inspiring talks, Islamic teachings, and contributions to faith and spirituality.">
-<meta name="keywords" content="{{ $data['name'] }}, Islamic speaker, Voice of Islam, TI Channel speaker Islamic teachings, inspiring talks, faith, spirituality, Islamic scholar">
+<meta name="description" content="Discover {{ $data['name'] }} on TI Channel. Explore inspiring talks, Islamic teachings, and contributions that strengthen faith and spirituality.">
+<meta name="keywords" content="{{ $data['name'] }}, Islamic speaker, Voice of Islam, TI Channel speaker, Islamic teachings, inspiring talks, faith, spirituality, Islamic scholar">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 
 <!-- Open Graph Meta Tags (for social media) -->
 <meta property="og:title" content="{{ $data['name'] }} - Speaker | TI Channel | Voice of Islam">
-<meta property="og:description" content="Learn more about {{ $data['name'] }} on TI Channel. Explore their inspiring talks, Islamic teachings, and contributions to faith and spirituality.">
+<meta property="og:description" content="Discover {{ $data['name'] }} on TI Channel. Explore inspiring talks, Islamic teachings, and contributions that strengthen faith and spirituality.">
 <meta property="og:image" content="{{ $data['profile_image'] ? asset($data['profile_image']) : asset('/images/icons/icon-512x512.png') }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="profile">
@@ -23,10 +23,11 @@
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $data['name'] }} - Speaker | TI Channel | Voice of Islam">
-<meta name="twitter:description" content="Learn more about {{ $data['name'] }} on TI Channel. Explore their inspiring talks, Islamic teachings, and contributions to faith and spirituality.">
+<meta name="twitter:description" content="Discover {{ $data['name'] }} on TI Channel. Explore inspiring talks, Islamic teachings, and contributions that strengthen faith and spirituality.">
 <meta name="twitter:image" content="{{ $data['profile_image'] ? asset($data['profile_image']) : asset('/images/icons/icon-512x512.png') }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 
 @section('content')

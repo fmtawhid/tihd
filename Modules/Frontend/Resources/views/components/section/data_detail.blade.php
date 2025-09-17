@@ -1,3 +1,11 @@
+<style>
+    @media (max-width: 767.98px) {
+        .section-spacing {
+            padding: 0px 0;
+        }
+    }
+</style>
+
 <div class="detail-page-info section-spacing">
     <div class="container-fluid">
         <div class="row">
@@ -17,7 +25,7 @@
                             </div>
                         </div>
                         @if($data['your_review'] == null)
-                            <div class="col-md-5 mt-md-0 mt-4 text-md-end" id="addratingbtn">
+                            <!-- <div class="col-md-5 mt-md-0 mt-4 text-md-end" id="addratingbtn">
                                 @if(Auth::check())
                                 <button class="btn btn-dark"
                                         data-bs-toggle="modal"
@@ -36,7 +44,10 @@
                                         </span>
                                     </a>
                                 @endif
-                            </div>
+                            </div> -->
+
+
+                            
                             {{-- @else
                             @if(Auth::check())
                             <div class="col-md-5 mt-md-0 mt-4 text-md-end d-none"  id="addratingbtn">
@@ -133,11 +144,15 @@
                                 flex-direction: column !important;
                                 align-items: flex-start !important;
                             }
+                            .watch_now_button {
+                                width: 120px;
+                                height: 40px;
+                            }
                         }
                     </style>
                     <div class="d-flex align-items-center flex-wrap gap-4 mt-5 custom-responsive-wrap">
-                        <div class="play-button-wrapper">
-                            <button
+                        <div class="play-button-wrapper watch_now_button">
+                            <button style="width: 165px; height: 50px;"
                             class="btn btn-primary"
                             id="watchNowButton"
                             data-type="{{ $type }}"

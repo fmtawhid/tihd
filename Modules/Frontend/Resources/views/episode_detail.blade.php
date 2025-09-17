@@ -12,7 +12,9 @@
 @endphp
 
 <title>{{ $metaTitle }}</title>
-<meta name="description" content="{{ Str::limit($episodeDescription, 155) }}">
+
+<!-- SEO-friendly description -->
+<meta name="description" content="{{ Str::limit($episodeDescription, 155, '') }}">
 <meta name="keywords" content="{{ $episodeName }}, TV Show, Episode, {{ $genres }}, {{ $releaseYear }}, Islamic content, TI Channel">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,22 +22,22 @@
 
 <link rel="canonical" href="{{ $ogUrl }}">
 
+<!-- Open Graph / Social -->
 <meta property="og:title" content="{{ $metaTitle }}">
-<meta property="og:description" content="{{ Str::limit($episodeDescription, 200) }}">
+<meta property="og:description" content="{{ Str::limit($episodeDescription, 200, '') }}">
 <meta property="og:image" content="{{ $ogImage }}">
 <meta property="og:url" content="{{ $ogUrl }}">
 <meta property="og:type" content="video.episode">
 <meta property="og:site_name" content="TI Channel">
 <meta property="og:video:series" content="{{ $data['tvShowLinks'][0]['series_name'] ?? 'TI Channel TV Show' }}">
 
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $metaTitle }}">
-<meta name="twitter:description" content="{{ Str::limit($episodeDescription, 200) }}">
+<meta name="twitter:description" content="{{ Str::limit($episodeDescription, 200, '') }}">
 <meta name="twitter:image" content="{{ $ogImage }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection
-
-
 
 @section('content')
 

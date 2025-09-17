@@ -1,32 +1,33 @@
 @extends('frontend::layouts.master')
 
 @section('meta')
-<!-- Basic Meta Tags -->
-<title>Live TV - TI Channel | Voice of Islam</title>
-<meta name="description" content="Watch Live TV on TI Channel, your Islamic OTT platform. Enjoy 24/7 streaming of inspiring Islamic content, live events, and educational programs. Stay connected with your faith in real time.">
-<meta name="keywords" content="Live TV, TI Channel, Islamic Live TV, Voice of Islam, 24/7 Islamic streaming, Islamic events, faith-based live programs, Islamic spirituality, online Islamic TV, live Islamic programs">
-<meta name="author" content="TI Channel">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
+    <!-- Basic Meta Tags -->
+    <title>Live TV - TI Channel | Voice of Islam</title>
+    <meta name="description" content="Watch Live TV on TI Channel. Enjoy 24/7 streaming of inspiring Islamic content, live events, and educational programs in real time.">
+    <meta name="keywords" content="Live TV, TI Channel, Islamic Live TV, Voice of Islam, 24/7 Islamic streaming, Islamic events, faith-based live programs, Islamic spirituality, online Islamic TV">
+    <meta name="author" content="TI Channel">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<!-- Canonical Tag -->
-<link rel="canonical" href="{{ url()->current() }}">
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="{{ url()->current() }}">
 
-<!-- Open Graph Meta Tags (for social media) -->
-<meta property="og:title" content="Live TV - TI Channel | Voice of Islam">
-<meta property="og:description" content="Watch Live TV on TI Channel, your Islamic OTT platform. Enjoy 24/7 streaming of inspiring Islamic content, live events, and educational programs. Stay connected with your faith in real time.">
-<meta property="og:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
-<meta property="og:url" content="{{ url()->current() }}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="TI Channel">
+    <!-- Open Graph Meta Tags (for social media) -->
+    <meta property="og:title" content="Live TV - TI Channel | Voice of Islam">
+    <meta property="og:description" content="Watch Live TV on TI Channel. Enjoy 24/7 streaming of inspiring Islamic content, live events, and educational programs in real time.">
+    <meta property="og:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TI Channel">
 
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Live TV - TI Channel | Voice of Islam">
-<meta name="twitter:description" content="Watch Live TV on TI Channel, your Islamic OTT platform. Enjoy 24/7 streaming of inspiring Islamic content, live events, and educational programs. Stay connected with your faith in real time.">
-<meta name="twitter:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
-<meta name="twitter:site" content="@TI_Channel">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Live TV - TI Channel | Voice of Islam">
+    <meta name="twitter:description" content="Watch Live TV on TI Channel. Enjoy 24/7 streaming of inspiring Islamic content, live events, and educational programs in real time.">
+    <meta name="twitter:image" content="{{ asset('/images/icons/icon-512x512.png') }}">
+    <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 
 @section('content')

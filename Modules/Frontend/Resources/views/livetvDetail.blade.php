@@ -2,7 +2,7 @@
 @section('meta')
 <!-- Basic Meta Tags -->
 <title>{{ $data['name'] }} - TI Channel | Voice of Islam</title>
-<meta name="description" content="{{ $data['description'] }}">
+<meta name="description" content="{{ Str::limit(strip_tags($data['description']), 155, '') }}">
 <meta name="keywords" content="{{ $data['name'] }}, Islamic program, fasting, Sawm, spiritual growth, self-discipline, Ramadan, Islamic teachings, empathy, Voice of Islam, TI Channel">
 <meta name="author" content="TI Channel">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
 
 <!-- Open Graph Meta Tags (for social media) -->
 <meta property="og:title" content="{{ $data['name'] }} - TI Channel | Voice of Islam">
-<meta property="og:description" content="{{ $data['description'] }}">
+<meta property="og:description" content="{{ Str::limit(strip_tags($data['description']), 200, '') }}">
 <meta property="og:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:site_name" content="TI Channel">
@@ -21,10 +21,11 @@
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $data['name'] }} - TI Channel | Voice of Islam">
-<meta name="twitter:description" content="{{ $data['description'] }}">
+<meta name="twitter:description" content="{{ Str::limit(strip_tags($data['description']), 200, '') }}">
 <meta name="twitter:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
 <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 @section('content')
 <div id="thumbnail-section">

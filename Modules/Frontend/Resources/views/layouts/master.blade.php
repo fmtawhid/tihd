@@ -15,8 +15,9 @@
 	<link rel="manifest" href="{{ asset('manifest.json') }}">
 
 
-
-
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300&amp;display=swap" rel="stylesheet">
 
@@ -36,6 +37,19 @@
 
 <body class="{{ Route::currentRouteName() == 'search' ? 'search-page' : '' }}">
     @include('frontend::layouts.header')
+    @if(session('success'))
+        <div class="alert bg-success text-white alert-success alert-dismissible fade show" style="z-index: 1055;" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger text-white bg-danger alert-dismissible fade show" style="z-index: 1055;" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     @yield('content')
 
@@ -81,4 +95,6 @@
       window.defaultCurrencySymbol = @json(Currency::defaultSymbol())
 
     </script>
+
+
 </body>

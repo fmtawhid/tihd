@@ -47,7 +47,7 @@
                                     {{ html()->file('file_url[]')
                                         ->id('file_url_media')
                                         ->class('form-control')
-                                        ->attribute('accept', '.jpeg, .jpg, .png, .gif, .mov, .mp4, .avi')
+                                        ->attribute('accept', '.jpeg,.jpg,.png,.gif,.svg,.webp')
                                         ->attribute('multiple', true)
                                         ->attribute('required', true)
                                         ->style('display: none;')

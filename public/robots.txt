@@ -1,2 +1,30 @@
+# Allow all crawlers to access public content
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow sensitive backend/admin routes
+Disallow: /app/
+Disallow: /admin/
+Disallow: /storage/
+Disallow: /media-library/
+Disallow: /backups/
+Disallow: /install/
+Disallow: /notification-list
+Disallow: /notification-counts
+Disallow: /notification-remove/
+Disallow: /settings/
+Disallow: /clear-cache
+Disallow: /google-auth
+Disallow: /store-access-token
+Disallow: /token-revoke
+Disallow: /config_clear
+
+# Disallow internal service files
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Optional: Block query searches (if you don’t want them indexed)
+Disallow: /*?*
+
+# Sitemap (important for SEO)
+Sitemap: https://tihd.tv/sitemap.xml

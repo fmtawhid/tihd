@@ -166,28 +166,60 @@ class SeasonsController extends Controller
 
     }
 
+    // public function store(SeasonRequest $request)
+    // {
+    //     $data = $request->all();
+    //     $data['poster_url']= !empty( $data['tmdb_id']) ?  $data['poster_url'] : extractFileNameFromUrl($data['poster_url']);
+    //     // $data['poster_url'] = extractFileNameFromUrl($data['poster_url']);
+    //     $data['trailer_video'] = extractFileNameFromUrl($data['trailer_video']);
+
+    //     $season = $this->seasonService->create($data);
+    //     $notification_data = [
+    //         'id' => $season->id,
+    //         'name' => $season->name,
+    //         'poster_url' => $season->poster_url ?? null,
+    //         'type' => 'season',
+    //         'release_date' => optional($season->entertainmentdata)->release_date ?? null,
+    //         'description' => $season->description ?? null,
+    //     ];
+    //     sendNotifications($notification_data);
+    //     $message = __('messages.create_form', ['form' => 'Season']);
+
+    //     return redirect()->route('backend.seasons.index')->with('success', $message);
+
+    // }
     public function store(SeasonRequest $request)
-    {
-        $data = $request->all();
-        $data['poster_url']= !empty( $data['tmdb_id']) ?  $data['poster_url'] : extractFileNameFromUrl($data['poster_url']);
-        // $data['poster_url'] = extractFileNameFromUrl($data['poster_url']);
-        $data['trailer_video'] = extractFileNameFromUrl($data['trailer_video']);
+{
+    $data = $request->all();
 
-        $season = $this->seasonService->create($data);
-        $notification_data = [
-            'id' => $season->id,
-            'name' => $season->name,
-            'poster_url' => $season->poster_url ?? null,
-            'type' => 'season',
-            'release_date' => optional($season->entertainmentdata)->release_date ?? null,
-            'description' => $season->description ?? null,
-        ];
-        sendNotifications($notification_data);
-        $message = __('messages.create_form', ['form' => 'Season']);
+    // Poster processing
+    $data['poster_url'] = !empty($data['tmdb_id']) 
+        ? $data['poster_url'] 
+        : extractFileNameFromUrl($data['poster_url']);
 
-        return redirect()->route('backend.seasons.index')->with('success', $message);
-
+    // Trailer processing - use trailer_url instead of trailer_video
+    if (isset($data['trailer_url'])) {
+        $data['trailer_url'] = extractFileNameFromUrl($data['trailer_url']);
     }
+
+    $season = $this->seasonService->create($data);
+
+    $notification_data = [
+        'id' => $season->id,
+        'name' => $season->name,
+        'poster_url' => $season->poster_url ?? null,
+        'type' => 'season',
+        'release_date' => optional($season->entertainmentdata)->release_date ?? null,
+        'description' => $season->description ?? null,
+    ];
+
+    sendNotifications($notification_data);
+
+    $message = __('messages.create_form', ['form' => 'Season']);
+
+    return redirect()->route('backend.seasons.index')->with('success', $message);
+}
+
 
     /**
      * Show the form for editing the specified resource.

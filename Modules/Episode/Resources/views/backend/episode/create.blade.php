@@ -210,7 +210,7 @@
                     @enderror
                     <div class="invalid-feedback" id="desc-error">Description field is required</div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <!-- <div class="col-md-6 col-lg-4">
                     {{ html()->label(__('movie.lbl_trailer_url_type').' <span class="text-danger">*</span>', 'type')->class('form-label') }}
                     {{ html()->select(
                                 'trailer_url_type',
@@ -222,8 +222,11 @@
                     @enderror
                     <div class="invalid-feedback" id="name-error">Trailer Type field is required</div>
 
-                </div>
-                <div class="col-md-6 col-lg-4 d-none" id="url_input">
+                </div> -->
+                <!-- Hidden input for trailer url type with HLS as default -->
+                {{ html()->hidden('trailer_url_type', 'HLS')->id('trailer_url_type') }}
+
+                <!-- <div class="col-md-6 col-lg-4 d-none" id="url_input">
                     {{ html()->label(__('movie.lbl_trailer_url').' <span class="text-danger">*</span>', 'trailer_url')->class('form-label') }}
                     {{ html()->text('trailer_url')->attribute('value', old('trailer_url'))->placeholder(__('placeholder.lbl_trailer_url'))->class('form-control') }}
                     @error('trailer_url')
@@ -232,9 +235,19 @@
                     <div class="invalid-feedback" id="trailer-url-error">Video URL field is required</div>
                     <div class="invalid-feedback" id="trailer-pattern-error" style="display:none;">
                     Please enter a valid URL starting with http:// or https://.
+                </div> -->
+                <div class="col-md-12 col-lg-12" id="url_input">
+                    {{ html()->label(__('movie.lbl_trailer_url') .' (HLS) <span class="text-danger">*</span>', 'trailer_url')->class('form-label') }}
+                    {{ html()->text('trailer_url')->attribute('value', old('trailer_url'))->placeholder(__('placeholder.lbl_trailer_url'))->class('form-control')->required() }}
+                    @error('trailer_url')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <div class="invalid-feedback" id="trailer-url-error">Video URL field is required</div>
+                    <div class="invalid-feedback" id="trailer-pattern-error" style="display:none;">
+                    Please enter a valid HLS URL starting with http:// or https://.
                 </div>
                 </div>
-                <div class="col-md-6 col-lg-4 d-none" id="url_file_input">
+                <!-- <div class="col-md-6 col-lg-4 d-none" id="url_file_input">
                     {{ html()->label(__('movie.lbl_trailer_video').' <span class="text-danger">*</span>', 'trailer_video')->class('form-label') }}
                     <div class="" id="selectedImageContainertailerurl">
                         @if(old('trailer_url', isset($data) ? $data->trailer_url : ''))
@@ -276,7 +289,7 @@
                     @enderror
                     <div class="invalid-feedback" id="trailer-file-error">Video File field is required</div>
 
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -362,7 +375,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row gy-3">
-                <div class="col-md-6 col-lg-6">
+                <!-- <div class="col-md-6 col-lg-6">
                     {{ html()->label(__('movie.lbl_video_upload_type'). '<span class="text-danger">*</span>', 'video_upload_type')->class('form-label') }}
                     {{ html()->select(
                                 'video_upload_type',
@@ -373,25 +386,43 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="invalid-feedback" id="name-error">Video Type field is required</div>
-                </div>
-                <div class="col-md-6 col-lg-6 d-none" id="video_url_input_section">
-    {{ html()->label(__('movie.video_url_input'). '<span class="text-danger">*</span>', 'video_url_input')->class('form-control-label') }}
-    {{
-        html()->text('video_url_input')
-            ->attribute('value', old('video_url_input'))
-            ->placeholder(__('placeholder.video_url_input'))
-            ->class('form-control')
+                </div> -->
+                {{ html()->hidden('video_upload_type', 'HLS')->id('video_upload_type') }}
+                <!-- <div class="col-md-6 col-lg-6 d-none" id="video_url_input_section">
+                    {{ html()->label(__('movie.video_url_input'). '<span class="text-danger">*</span>', 'video_url_input')->class('form-control-label') }}
+                    {{
+                        html()->text('video_url_input')
+                            ->attribute('value', old('video_url_input'))
+                            ->placeholder(__('placeholder.video_url_input'))
+                            ->class('form-control')
 
-    }}
-    @error('video_url_input')
-    <span class="text-danger">{{ $message }}</span>
-    @enderror
-    <div class="invalid-feedback" id="url-error">Video URL field is required</div>
-    <div class="invalid-feedback" id="url-pattern-error" style="display:none;">
-                            Please enter a valid URL starting with http:// or https://.
-                        </div>
-</div>
-                <div class="col-md-6 col-lg-6 d-none" id="video_file_input_section">
+                    }}
+                    @error('video_url_input')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <div class="invalid-feedback" id="url-error">Video URL field is required</div>
+                    <div class="invalid-feedback" id="url-pattern-error" style="display:none;">
+                                            Please enter a valid URL starting with http:// or https://.
+                                        </div>
+                </div> -->  
+                <div class="col-md-12" id="video_url_input_section">
+                    {{ html()->label(__('movie.video_url_input') . ' (HLS) <span class="text-danger">*</span>', 'video_url_input')->class('form-control-label') }}
+                    {{
+                        html()->text('video_url_input')
+                            ->attribute('value', old('video_url_input'))
+                            ->placeholder(__('placeholder.video_url_input'))
+                            ->class('form-control')
+                            ->required()
+                    }}
+                    @error('video_url_input')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <div class="invalid-feedback" id="url-error">Video URL field is required</div>
+                    <div class="invalid-feedback" id="url-pattern-error" style="display:none;">
+                        Please enter a valid HLS URL starting with http:// or https://.
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-lg-6 d-none" id="video_file_input_section">
                     {{ html()->label(__('movie.video_file_input'). '<span class="text-danger">*</span>', 'video_file')->class('form-label') }}
 
                     <div class="input-group btn-video-link-upload">
@@ -428,7 +459,7 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="invalid-feedback" id="file-error">Video File field is required</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -456,7 +487,7 @@
                     <div id="enable_quality_section" class="enable_quality_section d-none">
                         <div id="video-inputs-container-parent">
                             <div class="row gy-3 video-inputs-container">
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     {{ html()->label(__('movie.lbl_video_upload_type'), 'video_quality_type')->class('form-label') }}
                                     {{ html()->select(
                                                 'video_quality_type[]',
@@ -466,8 +497,8 @@
                                     @error('video_quality_type')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
-                                </div>
-
+                                </div> -->
+                                {{ html()->hidden('video_quality_type[]', 'HLS')->class('video_quality_type') }}
                                 <div class="col-md-4 video-input">
                                     {{ html()->label(__('movie.lbl_video_quality'), 'video_quality')->class('form-label') }}
                                     {{ html()->select(

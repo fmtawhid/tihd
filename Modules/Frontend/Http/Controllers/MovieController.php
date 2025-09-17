@@ -86,13 +86,14 @@ class MovieController extends Controller
             $reviews = $movie->entertainmentReviews ?? collect();
 
             // Encrypt the trailer URL
-            if (!empty($movie->trailer_url) && $movie->trailer_url_type != 'Local') {
+            if (!empty($movie->trailer_url) && $movie->trailer_url_type == 'HLS') {
                 $movie['trailer_url'] = Crypt::encryptString($movie->trailer_url);
             }
 
-            if (!empty($movie->video_url_input) && $movie->video_upload_type != 'Local') {
+            if (!empty($movie->video_url_input) && $movie->video_upload_type == 'HLS') {
                 $movie['video_url_input'] = Crypt::encryptString($movie->video_url_input);
             }
+            
 
             if ($userId) {
                 $movie['is_watch_list'] = WatchList::where('entertainment_id', $movieId)
@@ -194,6 +195,14 @@ class MovieController extends Controller
             }
         }
 
+
+        
+
+        $data['video_url_input'] = Crypt::encryptString($movie->video_url_input);
+        $data['trailer_url'] = Crypt::encryptString($movie->trailer_url);
+
+// dd($data);
+// dd();
         return view('frontend::movieDetail', compact('data'));
     }
 
@@ -223,9 +232,9 @@ class MovieController extends Controller
         $data=$data->toArray(request());
 
         // Encrypt the trailer URL
-        if (!empty($livetv->TvChannelStreamContentMappings['server_url'])) {
-            $data['server_url'] = Crypt::encryptString($livetv->TvChannelStreamContentMappings['server_url']);
-        }
+        // if (!empty($livetv->TvChannelStreamContentMappings['server_url'])) {
+        //     $data['server_url'] = Crypt::encryptString($livetv->TvChannelStreamContentMappings['server_url']);
+        // }
 
         // Get suggestions based on TV category
 

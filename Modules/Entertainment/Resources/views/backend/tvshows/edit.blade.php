@@ -109,8 +109,8 @@
                             <div class="invalid-feedback" id="name-error">Name field is required</div>
                        </div>
 
-                       <div >
-                        <div class="mb-3">
+                       <div>
+                        <!-- <div class="mb-3">
                             {{ html()->label(__('movie.lbl_trailer_url_type').' <span class="text-danger">*</span>', 'type')->class('form-label') }}
                             {{ html()->select(
                                     'trailer_url_type',
@@ -122,6 +122,21 @@
                             @enderror
                             <div class="invalid-feedback" id="name-error">Trailer Type field is required</div>
 
+                        </div> -->
+                        {{-- Always save type = hls --}}
+                        {{ html()->hidden('trailer_url_type', 'hls') }}
+
+                        <div class="mb-3">
+                            {{ html()->label(__('movie.lbl_trailer_url'). ' <span class="text-danger">*</span>', 'trailer_url')->class('form-label form-control-label') }}
+                            {{ html()->text('trailer_url')
+                                ->attribute('value', $data->trailer_url)
+                                ->placeholder(__('placeholder.lbl_trailer_url'))
+                                ->class('form-control')
+                                ->required() }}
+                            @error('trailer_url')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <div class="invalid-feedback" id="trailer-url-error">Video URL field is required</div>
                         </div>
                         <div class="d-none" id="url_input">
                             {{ html()->label(__('movie.lbl_trailer_url').' <span class="text-danger">*</span>', 'trailer_url')->class('form-label') }}

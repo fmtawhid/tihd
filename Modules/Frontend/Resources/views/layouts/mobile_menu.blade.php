@@ -1,36 +1,33 @@
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <style>
 
-
-
+<style>
 /* Bottom Fixed Menu for Mobile */
 .bottom-menu {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #E50914;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  backdrop-filter: blur(8px);      /* Blur effect */
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-around;
-  padding: 1px 0;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 6px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   display: none;  /* Initially hidden */
-  border-radius: 30px 30px 0 0;
+  border-radius: 15px 15px 0 0;
 }
 
 .bottom-menu a {
   color: white;
-  font-size: 15px;
+  font-size: 13px;
   text-decoration: none;
   text-align: center;
-  padding: 5px;
+  padding: 4px;
   transition: all 0.3s ease;
 }
 
-
-/* Show the menu only for mobile (screen width <= 768px) */
 @media (max-width: 1200px) {
   .bottom-menu {
     display: flex;
@@ -38,78 +35,62 @@
 }
 
 .bottom-menu .icon {
-  font-size: 15px; /* Default icon size */
-  transition: transform 0.3s ease, font-size 0.3s ease; /* Transition for icon size */
+  font-size: 16px; /* Small default icon size */
+  transition: transform 0.3s ease, font-size 0.3s ease;
 }
 
-/* When an icon is active, increase its font size */
+/* Active icon effect */
 .bottom-menu a.active .icon {
-  font-size: 25px; /* Increased size when active */
+  font-size: 20px;
+  color: #e50914;
 }
 
-.bottom-menu a.active  {
-  font-weight: 800;
+.bottom-menu a.active {
+  font-weight: 700;
 }
 
-
-
+/* Label text */
 .bottom-menu a p {
-  font-size: 12px;
+  font-size: 11px;
   opacity: 0.8;
+  margin-bottom: 0;
   transition: opacity 0.3s ease;
-  margin-bottom: 0px;
 }
+</style>
 
-
-
-/* Active state for the text of the active item */
-
-
-  </style>
-
-<!-- Bottom Fixed Menu for Mobile -->
+<!-- Bottom Fixed Menu -->
 <div class="bottom-menu d-md-none d-xl-none">
   <a href="{{ route('user.login') }}" title="Home" class="{{ request()->routeIs('user.login') ? 'active' : '' }}">
-    <span class="icon fas fa-home"></span> <!-- Home Icon -->
+    <span class="icon fas fa-house-user"></span>
     <p>{{__('frontend.home')}}</p>
   </a>
 
   @if(isenablemodule('movie'))
     <a href="{{ route('movies') }}" title="Movies" class="{{ request()->routeIs('movies') ? 'active' : '' }}">
-      <span class="icon fas fa-tv"></span> <!-- Movies Icon -->
+      <span class="icon fas fa-video"></span>
       <p>{{__('frontend.movies')}}</p>
     </a>
   @endif
 
   @if(isenablemodule('tvshow'))
     <a href="{{ route('tv-shows') }}" title="Series" class="{{ request()->routeIs('tv-shows') ? 'active' : '' }}">
-      <span class="icon fas fa-film"></span> <!-- TV Shows Icon -->
+      <span class="icon fas fa-tv"></span>
       <p>{{__('frontend.tvshows')}}</p>
     </a>
   @endif
 
-  @if(isenablemodule('video'))
-    <a href="{{ route('videos') }}" title="Videos" class="{{ request()->routeIs('videos') ? 'active' : '' }}">
-      <span class="icon fas fa-video"></span> <!-- Video Icon -->
-      <p>{{__('frontend.video')}}</p>
-    </a>
-  @endif
 
   @if(isenablemodule('livetv'))
     <a href="{{ route('livetv') }}" title="Live TV" class="{{ request()->routeIs('livetv') ? 'active' : '' }}">
-      <span class="icon fas fa-broadcast-tower"></span> <!-- Live TV Icon -->
+      <span class="icon fas fa-satellite-dish"></span>
       <p>{{__('frontend.livetv')}}</p>
     </a>
   @endif
 
   @if(auth()->user())
-    <a href="{{ route('comingsoon') }}" title="Watch History" class="{{ request()->routeIs('comingsoon') ? 'active' : '' }}">
-      <span class="icon fas fa-history"></span> <!-- Watch History Icon -->
-      <p>{{__('frontend.watch_history')}}</p>
+    <a href="{{ route('edit-profile') }}" title="Profile" class="{{ request()->routeIs('comingsoon') ? 'active' : '' }}">
+      <span class="icon fas fa-user-circle"></span>
+      <p>{{__('frontend.profile')}}</p>
     </a>
   @endif
 </div>
-
-
-
-

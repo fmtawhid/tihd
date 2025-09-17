@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    
     public function register()
     {
         if ($this->app->environment('local')) {
@@ -40,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Paginator::useBootstrap();
-
+        // \URL::forceScheme('https');
         Blade::directive('hasPermission', function ($permissions) {
             return "<?php if(Auth::user()->can({$permissions})): ?>";
         });
@@ -64,5 +65,7 @@ class AppServiceProvider extends ServiceProvider
 
             return $trans;
         });
+        
     }
+    
 }

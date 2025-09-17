@@ -1,32 +1,33 @@
 @extends('frontend::layouts.master')
 
 @section('meta')
-<!-- Basic Meta Tags -->
-<title>{{ $data['name'] }} - Islamic Series | TI Channel</title>
-<meta name="description" content="{{ $data['description'] }}">
-<meta name="keywords" content="{{ $data['name'] }}, Islamic series, Islamic teachings, faith-based series, TI Channel, Voice of Islam, spirituality, educational content, Islamic programs">
-<meta name="author" content="TI Channel">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
+    <!-- Basic Meta Tags -->
+    <title>{{ $data['name'] }} - Islamic Series | TI Channel</title>
+    <meta name="description" content="{{ Str::limit(strip_tags($data['description']), 155, '') }}">
+    <meta name="keywords" content="{{ $data['name'] }}, Islamic series, Islamic teachings, faith-based series, TI Channel, Voice of Islam, spirituality, educational content, Islamic programs">
+    <meta name="author" content="TI Channel">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<!-- Canonical Tag -->
-<link rel="canonical" href="{{ url()->current() }}">
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="{{ url()->current() }}">
 
-<!-- Open Graph Meta Tags (for social media) -->
-<meta property="og:title" content="{{ $data['name'] }} - Islamic Series | TI Channel">
-<meta property="og:description" content="{{ $data['description'] }}">
-<meta property="og:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
-<meta property="og:url" content="{{ url()->current() }}">
-<meta property="og:type" content="video.series">
-<meta property="og:site_name" content="TI Channel">
+    <!-- Open Graph Meta Tags (for social media) -->
+    <meta property="og:title" content="{{ $data['name'] }} - Islamic Series | TI Channel">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($data['description']), 200, '') }}">
+    <meta property="og:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="video.series">
+    <meta property="og:site_name" content="TI Channel">
 
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ $data['name'] }} - Islamic Series | TI Channel">
-<meta name="twitter:description" content="{{ $data['description'] }}">
-<meta name="twitter:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
-<meta name="twitter:site" content="@TI_Channel">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $data['name'] }} - Islamic Series | TI Channel">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($data['description']), 200, '') }}">
+    <meta name="twitter:image" content="{{ isset($data['thumbnail_image']) ? asset($data['thumbnail_image']) : asset('/images/icons/icon-512x512.png') }}">
+    <meta name="twitter:site" content="@TI_Channel">
 @endsection
+
 
 @section('content')
 <div class="tvshowscroll">

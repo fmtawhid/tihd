@@ -34,7 +34,7 @@ Route::middleware(['checkInstallation'])->group(function () {
 Route::get('/auth/apple', [AuthController::class, 'redirectToApple'])->name('auth.apple');
 Route::get('/auth/apple/callback', [AuthController::class, 'handleAppleCallback'])->name('auth.apple.callback');
 
-
+ 
 // Login with OTP
 Route::get('/login', [OTPController::class, 'otpLogin'])->name('login');
 Route::post('/auth/otp-login-store', [OTPController::class, 'otpLoginStore'])->name('auth.otp-login-store');
@@ -95,9 +95,27 @@ Route::get('/subscription-payment', [FrontendController::class, 'subscriptPaymen
 Route::get('/payment-history', [FrontendController::class, 'PaymentHistory'])->name('payment-history');
 Route::get('/all-review/{id}', [FrontendController::class, 'allReview'])->name('all-review');
 Route::get('/video-details', [FrontendController::class, 'VideoDetails'])->name('video-details');
-Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process-payment');
 Route::post('/select-plan', [PaymentController::class, 'selectPlan'])->name('select.plan');
-Route::post('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
+// Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process-payment');
+// Route::post('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
+// Payment routes must be protected by auth middleware
+// Route::middleware(['auth'])->group(function() {
+//     Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process-payment');
+//     Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+//     Route::get('/payment/fail', [PaymentController::class, 'paymentFail'])->name('payment.fail');
+//     Route::get('/payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+// });
+
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process-payment');
+
+// GET এবং POST উভয়কে অনুমতি দাও
+Route::match(['get','post'],'/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+Route::match(['get','post'],'/payment/fail', [PaymentController::class, 'paymentFail'])->name('payment.fail');
+Route::match(['get','post'],'/payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+Route::post('/payment/ipn', [PaymentController::class, 'ipn'])->name('payment.ipn');
+
 Route::post('/cancel-subscription', [FrontendController::class, 'cancelSubscription'])->name('cancelSubscription');
 Route::post('/decrypt-url', [FrontendController::class, 'decryptUrl'])->name('decrypt.url');
 Route::post('/get-payment-details', [FrontendController::class, 'getPaymentDetails']);
