@@ -123,7 +123,7 @@
 
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             {{ html()->label(__('castcrew.lbl_bio') . ' <span class="text-danger">*</span>', 'bio')->class('form-label') }}
-                            <span class="text-primary cursor-pointer" id="GenrateshortDescription"><i class="ph ph-info" data-bs-toggle="tooltip" title="{{ __('messages.chatgpt_info') }}"></i> {{ __('messages.lbl_chatgpt') }}</span>
+                            <!-- <span class="text-primary cursor-pointer" id="GenrateshortDescription"><i class="ph ph-info" data-bs-toggle="tooltip" title="{{ __('messages.chatgpt_info') }}"></i> {{ __('messages.lbl_chatgpt') }}</span> -->
                         </div>
 
                         {{

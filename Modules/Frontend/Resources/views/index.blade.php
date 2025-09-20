@@ -271,7 +271,7 @@
 <div id="genres-section" class="section-wraper container">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="mb-0">{{ __('Popular Genres') }}</h4>
-        <a href="{{ route('movies.genre', ['genre_id' => $mobileSettings['genre']->first()->id ?? 0]) }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a>
+        <!-- <a href="{{ route('movies.genre', ['genre_id' => $mobileSettings['genre']->first()->id ?? 0]) }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a> -->
     <a href="{{ route('movies.genre', ['genre_id' => $mobileSettings['genre']->first()->id ?? 0]) }}" 
    class="" 
    title="{{ __('See All') }}"

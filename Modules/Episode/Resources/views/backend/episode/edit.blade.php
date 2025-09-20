@@ -163,7 +163,7 @@
                         @enderror
                         <div class="invalid-feedback" id="desc-error">Description field is required</div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 d-none">
                         {{ html()->label(__('movie.lbl_trailer_url_type'). ' <span class="text-danger">*</span>', 'type')->class('form-label') }}
                         {{ html()->select(
                                 'trailer_url_type',
@@ -176,7 +176,7 @@
                         <div class="invalid-feedback" id="name-error">Trailer Type field is required</div>
 
                     </div>
-                    <div class="col-md-6 col-lg-4 d-none" id="url_input">
+                    <div class="col-md-12 col-lg-8 d-none" id="url_input">
                         {{ html()->label(__('movie.lbl_trailer_url'). ' <span class="text-danger">*</span>', 'trailer_url')->class('form-label') }}
                         {{ html()->text('trailer_url')->attribute('value', $data->trailer_url)->placeholder(__('placeholder.lbl_trailer_url'))->class('form-control') }}
                         @error('trailer_url')
@@ -313,7 +313,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row gy-3">
-                    <div class="col-md-6 col-lg-6">
+                    <div class="col-md-6 col-lg-6 d-none">
                         {{ html()->label(__('movie.lbl_video_upload_type'). '<span class="text-danger">*</span>', 'video_upload_type')->class('form-label') }}
                         {{ html()->select(
                                 'video_upload_type',
@@ -325,7 +325,7 @@
                         @enderror
                         <div class="invalid-feedback" id="name-error">Video Type field is required</div>
                     </div>
-                    <div class="col-md-6 col-lg-6 d-none" id="video_url_input_section">
+                    <div class="col-md-12 col-lg-12 d-none" id="video_url_input_section">
                         {{ html()->label(__('movie.video_url_input'). '<span class="text-danger">*</span>', 'video_url_input')->class('form-label') }}
                         {{ html()->text('video_url_input')->attribute('value', $data->video_url_input)->placeholder(__('placeholder.video_url_input'))->class('form-control') }}
                         @error('video_url_input')

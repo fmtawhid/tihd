@@ -34,9 +34,9 @@
 
 
 
-                      <button type="button" class="btn btn-dark" data-modal="export">
+                      <!-- <button type="button" class="btn btn-dark" data-modal="export">
                         <i class="ph ph-export align-middle"></i> {{ __('messages.export') }}
-                      </button>
+                      </button> -->
                 </div>
 
                 <x-slot name="toolbar">

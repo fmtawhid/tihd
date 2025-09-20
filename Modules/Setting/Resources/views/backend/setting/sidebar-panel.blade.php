@@ -11,13 +11,13 @@
                             </a>
                         </div>
                     @endhasPermission
-                    @hasPermission('setting_custom_code')
+                    <!-- @hasPermission('setting_custom_code')
                         <div class="mb-3 active-menu">
                             <a id="link-custom-code" href="{{ route('backend.settings.custom-code') }}" class="btn btn-border {{ request()->routeIs('backend.settings.custom-code') ? 'active' : '' }}">
                                 <i class="fas fa-cube"></i>{{ __('setting_sidebar.lbl_custom_code') }}
                             </a>
                         </div>
-                    @endhasPermission
+                    @endhasPermission -->
                     @hasPermission('setting_module')
                     <div class="mb-3 active-menu">
                         <a id="link-module-setting" href="{{ route('backend.settings.module') }}" class="btn btn-border {{ request()->routeIs('backend.settings.module') ? 'active' : '' }}">
@@ -39,13 +39,13 @@
                             </a>
                         </div>
                     @endhasPermission --}}
-                    @hasPermission('setting_customization')
+                    <!-- @hasPermission('setting_customization')
                         <div class="mb-3 active-menu">
                             <a id="link-customization" href="{{ route('backend.settings.customization') }}" class="btn btn-border {{ request()->routeIs('backend.settings.customization') ? 'active' : '' }}">
                                 <i class="fa-solid fa-swatchbook"></i>{{ __('setting_sidebar.lbl_customization') }}
                             </a>
                         </div>
-                    @endhasPermission
+                    @endhasPermission -->
                     @hasPermission('setting_mail')
                         <div class="mb-3 active-menu">
                             <a id="link-mail" href="{{ route('backend.settings.mail') }}" class="btn btn-border {{ request()->routeIs('backend.settings.mail') ? 'active' : '' }}">
@@ -60,11 +60,11 @@
                             </a>
                         </div>
                     @endhasPermission
-                    <div class="mb-3 active-menu">
+                    <!-- <div class="mb-3 active-menu">
                         <a id="link-payment-method" href="{{ route('backend.settings.payment-method') }}" class="btn btn-border {{ request()->routeIs('backend.settings.payment-method') ? 'active' : '' }}">
                             <i class="fa-solid fa-coins"></i>{{ __('setting_sidebar.lbl_payment') }}
                         </a>
-                    </div>
+                    </div> -->
                     @hasPermission('setting_language')
                         <div class="mb-3 active-menu">
                             <a id="link-language-settings" href="{{ route('backend.settings.language-settings') }}" class="btn btn-border {{ request()->routeIs('backend.settings.language-settings') ? 'active' : '' }}">
@@ -72,11 +72,11 @@
                             </a>
                         </div>
                     @endhasPermission
-                    <div class="mb-3 active-menu">
+                    <!-- <div class="mb-3 active-menu">
                         <a id="link-notification-configuration" href="{{ route('backend.settings.notification-configuration') }}" class="btn btn-border {{ request()->routeIs('backend.settings.notification-configuration') ? 'active' : '' }}">
                             <i class="fa-solid fa-bell"></i>{{ __('setting_sidebar.lbl_notification_configuration') }}
                         </a>
-                    </div>
+                    </div> -->
                     @hasPermission('view_currency')
                     <div class="mb-3 active-menu">
                         <a id="link-currency-settings" href="{{ route('backend.settings.currency-settings') }}" class="btn btn-border {{ request()->routeIs('backend.settings.currency-settings') ? 'active' : '' }}">

@@ -368,15 +368,15 @@ class GenerateMenus
                 'permission' => ['view_notification'],
                 'order' => 0,
             ]);
-                   $this->childMain($notification, [
-                    'icon' => 'ph ph-layout',
-                    'title' => __('notification.template'),
-                    'route' => 'backend.notification-templates.index',
-                    'shortTitle' => 'TE',
-                    'active' => 'app/notification-templates',
-                    'permission' => ['view_notification_template'],
-                    'order' => 0,
-                ]);
+            $this->childMain($notification, [
+                'icon' => 'ph ph-layout',
+                'title' => __('notification.template'),
+                'route' => 'backend.notification-templates.index',
+                'shortTitle' => 'TE',
+                'active' => 'app/notification-templates',
+                'permission' => ['view_notification_template'],
+                'order' => 0,
+            ]);
 
 
 

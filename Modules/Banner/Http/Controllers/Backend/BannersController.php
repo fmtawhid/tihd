@@ -212,7 +212,7 @@ class BannersController extends Controller
     public function create()
     {
         $module_title = __('banner.add_title');
-        $types = ['movie' => 'Movie', 'tvshow' => 'TV Show'];
+        $types = ['movie' => 'Programs', 'tvshow' => 'Series'];
         $mediaUrls = getMediaUrls();
         return view('banner::backend.banner.create', compact('module_title', 'types', 'mediaUrls'));
     }
@@ -239,7 +239,7 @@ class BannersController extends Controller
     public function edit(Banner $banner)
     {
         $module_title = __('banner.edit_title');
-        $types = ['movie' => 'Movie', 'tvshow' => 'TV Show'];
+        $types = ['movie' => 'Programs', 'tvshow' => 'Series'];
         $names = [];
 
         $banner['name_id'] = $banner->type_id;
