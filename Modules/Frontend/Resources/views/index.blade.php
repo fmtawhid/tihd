@@ -29,6 +29,7 @@
     <meta name="twitter:site" content="@TI_Channel">
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -65,7 +66,15 @@
 <div id="popular-movie-section" class="section-wraper container">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="mb-0">{{ __('Popular Programs') }}</h4>
-        <a href="{{ route('movies') }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a>
+        <a href="{{ route('movies') }}" 
+        class="" 
+        title="{{ __('See All') }}"
+        style="display: inline-flex; align-items: center; color: red;">
+            <span style="font-size: 24px;">
+                <i class="ph ph-caret-right ph-bold"></i>
+            </span>
+        </a>
+
     </div>
 
     <div class="swiper popularMoviesSwiper">
@@ -145,7 +154,15 @@
 <div id="popular-tvshow-section" class="section-wraper container">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="mb-0">{{ __('Popular Series') }}</h4>
-        <a href="{{ route('tv-shows') }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a>
+        <!-- <a href="{{ route('tv-shows') }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a> -->
+<a href="{{ route('tv-shows') }}" 
+   class="" 
+   title="{{ __('See All') }}"
+   style="display: inline-flex; align-items: center; color: red;">
+    <span style="font-size: 24px;">
+        <i class="ph ph-caret-right ph-bold"></i>
+    </span>
+</a>
     </div>
     <div class="swiper popularTVShowsSwiper">
         <div class="swiper-wrapper custom_height custom_class_series" style="height: 300px; margin:30px;">
@@ -207,7 +224,15 @@
 <div id="popular-personalities-section" class="section-wraper container">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="mb-0">{{ __('Popular Personalities') }}</h4>
-        <a href="{{ route('castcrewList') }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a>
+        <!-- <a href="{{ route('castcrewList') }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a> -->
+        <a href="{{ route('castcrewList') }}" 
+            class="" 
+            title="{{ __('See All') }}"
+            style="display: inline-flex; align-items: center; color: red;">
+                <span style="font-size: 24px;">
+                    <i class="ph ph-caret-right ph-bold"></i>
+                </span>
+        </a>
     </div>
     <div class="swiper popularPersonalitiesSwiper">
         <div class="swiper-wrapper custom_height custom_class_personalities" style="height:170px; margin:30px;">
@@ -247,6 +272,14 @@
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="mb-0">{{ __('Popular Genres') }}</h4>
         <a href="{{ route('movies.genre', ['genre_id' => $mobileSettings['genre']->first()->id ?? 0]) }}" class="btn btn-sm btn-outline-primary">{{ __('See All') }}</a>
+    <a href="{{ route('movies.genre', ['genre_id' => $mobileSettings['genre']->first()->id ?? 0]) }}" 
+   class="" 
+   title="{{ __('See All') }}"
+   style="display: inline-flex; align-items: center; color: red;">
+    <span style="font-size: 24px;">
+        <i class="ph ph-caret-right ph-bold"></i>
+    </span>
+</a>
     </div>
     <div class="swiper genresSwiper">
         <div class="swiper-wrapper custom_height custom_class_genres" style="height:170px; margin:30px;">
@@ -365,6 +398,9 @@
     }
     .section-spacing-bottom{
         padding: 0px !important;
+    }
+    .section-wraper h4{
+        font-size: 18px !important;
     }
 }
 /* ================== Personalities & Genres ================== */

@@ -39,7 +39,10 @@ Route::get('/auth/apple/callback', [AuthController::class, 'handleAppleCallback'
 Route::get('/login', [OTPController::class, 'otpLogin'])->name('login');
 Route::post('/auth/otp-login-store', [OTPController::class, 'otpLoginStore'])->name('auth.otp-login-store');
 Route::get('/auth/check-user-exists', [OTPController::class, 'checkUserExists'])->name('check.user.exists');
-
+// OTP send route
+Route::post('/auth/send-otp', [OTPController::class, 'sendOtp'])->name('send.otp');
+// OTP verify route
+Route::post('/auth/verify-otp', [OTPController::class, 'verifyOtp'])->name('verify.otp');
 
 // Login with Google
 Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');

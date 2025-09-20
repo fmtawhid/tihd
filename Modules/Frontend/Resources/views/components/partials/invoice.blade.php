@@ -19,7 +19,7 @@
         }
         body {
             /* font-family: "Roboto", sans-serif; */
-            font-family: 'DejaVu Sans';
+            font-family: 'DejaVu Sans', 'NotoSansBengali', sans-serif;
             color: #6B6B6B;
             font-size: 16px;
         }
@@ -96,20 +96,16 @@
             margin: 25px 0;
             border-color: #CCCCCC;
         }
-
-
     </style>
 </head>
 <body>
 
   <div class="header">
     <div class="main-logo" style="float: left">
-        <!-- <img class="logo-mini img-fluid" src="https://apps.iqonic.design/streamit-laravel/img/logo/dark_logo.png" height="30" alt="logo"> -->
         @include('frontend::components.partials.logo')
     </div>
     <div style="float: right">
         <p>{{ __('frontend.invoice_date') }} - <span class="text-black">{{ now()->format('d/m/Y') }}</span> <span style="padding-left: 10px;">{{ __('frontend.invoice_id') }} -  <span class="text-black">#{{ $data->id }}</span></span></p>
-        <!-- <p>{{ __('frontend.invoice_id') }} -  <span class="text-black">#{{ $data->id }}</span></p> -->
     </div>
   </div>
 
@@ -132,21 +128,15 @@
     </div>
   </div>
 
-
   <div class="header-content" style="clear: both">
     <div class="c-row">
         <div class="left-content c-col-7" style="float: left">
             <h3>{{ $settingValue = App\Models\Setting::where('name', 'app_name')->value('val') ?? '-'}}</h3>
-
-            {{-- <div style="width: 50%; margin-top: 10px;">
-                <p>1234 Innovation Avenue,Suite 500, Tech City, Silicon Valley,California, 94043, United States</p>
-            </div> --}}
         </div>
         <div class="right-content c-col-5" style="text-align: right; float: right">
             <p>{{ App\Models\Setting::where('name','inquriy_email')->value('val') ?? 'info@tihd.tv' }}</p>
             <p style="margin: 10px 0 0;">{{ App\Models\Setting::where('name','helpline_number')->value('val') ?? '-'}}</p>
         </div>
-
     </div>
   </div>
 
@@ -180,35 +170,29 @@
     <tbody>
         <tr>
             <td>{{$data->name }} - {{ $data->duration }} {{ $data->type }}</td>
-            <td>{{ \Currency::format($data->amount) }}</td>
+            <td>{{ number_format($data->amount, 2) }} tk</td>
+
             <td>-</td>
             <td>-</td>
-            <td class="c-text-end">{{ \Currency::format($data->amount) }}</td>
+            <td class="c-text-end"> {{ number_format($data->amount, 2) }} tk</td>
         </tr>
 
         @php
-
         $amount_after_discount = 0;
-       @endphp
-
+        @endphp
 
         @if($data->discount_percentage >0)
-
           @php
               $discount_amount= $data->amount*$data->discount_percentage/100;
               $amount_after_discount = $data->amount - $discount_amount;
           @endphp
-
         <tr>
             <td></td>
             <td></td>
             <td></td>
             <td>Discount ({{ $data->discount_percentage }}%)</td>
-            <td class="c-text-end">{{ \Currency::format($discount_amount) }}</td>
-
+            <td class="c-text-end"> {{ number_format($discount_amount, 2) }} tk</td>
         </tr>
-
-
         @endif
 
         @php
@@ -225,7 +209,6 @@
         }
         @endphp
 
-
         @if(!empty($taxData) && count($taxData) > 0)
         @foreach ($taxData as $tax)
             @php
@@ -241,44 +224,24 @@
                 <td></td>
                 <td></td>
                 <td>{{ $tax['title'] }}</td>
-                <td>{{ \Currency::format($taxAmount) }}</td>
+                <td>{{ number_format($taxAmount, 2) }} tk </td>
                 @if ($loop->first)
-                    <td rowspan="{{ count($taxData)  }}" class="c-text-end">{{ \Currency::format($totalTaxAmount) }}</td>
+                    <td rowspan="{{ count($taxData)  }}" class="c-text-end">{{ number_format($totalTaxAmount, 2) }} tk</td>
                 @endif
             </tr>
         @endforeach
         @endif
-
-
     </tbody>
-
   </table>
+
   <table style="border: none;">
     <thead>
         <tr>
             <th style="border: none; text-align: left;">{{ __('frontend.grand_total') }}</th>
-            <th style="border: none;" class="c-text-end">{{\Currency::format($data->total_amount)}}</th>
+            <th style="border: none;" class="c-text-end">{{ number_format($data->total_amount, 2) }} tk </th>
         </tr>
     </thead>
   </table>
-
-  @php
-
-     $page= Modules\Page\Models\Page::where('slug','terms-conditions')->first();
-
-     $page_detail= $page->description;
-
-  @endphp
-
-  <div class="bottom-section">
-    <h4 style="margin-bottom: 10px;">{{ __('frontend.terms_condition') }}</h4>
-    <p>{!! $page_detail  !!}<a href="#" class="text-black" style="text-decoration: none;">{{ App\Models\Setting::where('name','inquriy_email')->value('val') ?? '-' }}</a></p>
-  </div>
-
-
-
-
-
 
 </body>
 </html>
