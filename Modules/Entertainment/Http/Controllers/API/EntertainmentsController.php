@@ -146,6 +146,8 @@ class EntertainmentsController extends Controller
 
             $movie = Entertainment::where('id', $movieId)->with('entertainmentGenerMappings', 'plan', 'entertainmentReviews', 'entertainmentTalentMappings', 'entertainmentStreamContentMappings', 'entertainmentDownloadMappings')->first();
             $movie['reviews'] = $movie->entertainmentReviews ?? null;
+            
+            dd($movie);
 
             if ($request->has('user_id')) {
 

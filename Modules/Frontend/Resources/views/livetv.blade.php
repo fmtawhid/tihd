@@ -38,7 +38,7 @@
         @include('frontend::components.section.livetvthumbnail',  ['livetvthumbnail' => $responseData['slider']])
     </div>
 
-<div id="comingsoon-card-list">
+    <div id="comingsoon-card-list">
         <div class="container-fluid">
             <div class="row gy-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" id="coming-soon">
             </div>
@@ -46,7 +46,6 @@
                 <div class="row gy-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
                     @for ($i = 0; $i < 5; $i++)
                     <div class="shimmer-container col mb-3">
-                         
                     </div>
                     @endfor
                 </div>
@@ -54,9 +53,9 @@
         </div>
     </div>
 
-		<!-- <div style="display: flex; justify-content: center;">
-          <img src="https://tihd.tv/img/NoData.png" />
-		</div> -->
+    <!-- <div style="display: flex; justify-content: center;">
+        <img src="https://tihd.tv/img/NoData.png" />
+    </div> -->
 
     <div class="container-fluid padding-right-0">
         <div class="overflow-hidden">

@@ -12,7 +12,7 @@ use Currency;
 use Illuminate\Http\Request;
 use PDF; // উপরে use statement যোগ করুন
 
-
+ 
 class SubscriptionController extends Controller
 {
     protected string $exportClass = '\App\Exports\SubscriptionExport';
